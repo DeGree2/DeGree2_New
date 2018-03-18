@@ -3,21 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour {
-    //CHA1 & CHA2 - Milda Petrikaitė IFF-6/5
-
     public GameObject currentInterObject = null; //current item in range
     public InteractionObject currentInterObjScript = null;
     public Inventory inventory;
 
     private void Update()
     {
-        //if there is a current interactable object, picks it up to inventory
+        //if there is a current interactable object, interacts with it
         if (Input.GetButtonDown("Interact") && currentInterObject)
         {
-            //check to see if this object is to be stored in inventory
-            if (currentInterObjScript.inventory && !currentInterObjScript.isInInventory)
+            //interaction specific for item (checks to see if item is to be stored in inventory and adds it)
+            if (currentInterObjScript is Item)
             {
-                inventory.AddItem(currentInterObject);
+                if (((Item)currentInterObjScript).inventory && !((Item)currentInterObjScript).isInInventory)
+                {
+                    inventory.AddItem(currentInterObject);
+                }
+            }
+            //interaction specific for openable object
+            else if (currentInterObjScript is OpenableObject)
+            {
+                if (((OpenableObject)currentInterObjScript).isLocked)
+                {
+                    //checks if specific item is in inventory
+                    if (inventory.FindItem(((OpenableObject)currentInterObjScript).key))
+                    {
+                        //unlocks the object
+                        ((OpenableObject)currentInterObjScript).isLocked = false;
+                        Debug.Log(currentInterObject.name + " was unlocked");
+                    }
+                    else
+                        Debug.Log(currentInterObject.name + " was not unlocked, key needed");
+                }
+                //if object can be opened, opens it (or closes)
+                if (!((OpenableObject)currentInterObjScript).isLocked)
+                {
+                    currentInterObject.SendMessage("DoInteraction");
+                }
+                
             }
         }
 
