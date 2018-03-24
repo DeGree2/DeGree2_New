@@ -3,19 +3,19 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class Inventory : MonoBehaviour {
-    //CHA1 & CHA3 - Milda Petrikaitė IFF-6/5
-
     public GameObject[] inventory = new GameObject[10];//inventory array to store items
     public Button[] InventoryButtons = new Button[10]; //array for display
     public int activeSlot = -1; //active item slot, -1 means not selected
 
     public void Start()
     {
+        //making sure inventory is empty in the beginning
         for(int i = 0; i<10; i++)
         {
             inventory[i] = null;
         }
     }
+
     public void AddItem(GameObject item)
     {
         bool itemAdded = false; //to determine whether the item was added (for inv is full case)
@@ -41,6 +41,16 @@ public class Inventory : MonoBehaviour {
         {
             Debug.Log("Inventory full");
         }
+    }
+
+    public bool FindItem(GameObject item)
+    {
+        for(int i = 0; i < inventory.Length; i++)
+        {
+            if (inventory[i] == item)
+                return true; //item found
+        }
+        return false; //item not present in inventory
     }
 
     //sets slot as active left from currently active
