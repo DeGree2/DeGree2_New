@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInteract : MonoBehaviour {
     public GameObject currentInterObject = null; //current item in range
     public InteractionObject currentInterObjScript = null;
     public Inventory inventory;
+    public Text message; //text of message associated with interactions
 
     private void Update()
     {
@@ -30,13 +32,17 @@ public class PlayerInteract : MonoBehaviour {
                     {
                         //unlocks the object
                         ((OpenableObject)currentInterObjScript).isLocked = false;
-                        Debug.Log(currentInterObject.name + " was unlocked");
+                        message.text = currentInterObjScript.objectName + " was unlocked";
+                        message.SendMessage("FadeAway");
                     }
                     else
-                        Debug.Log(currentInterObject.name + " was not unlocked, key needed");
+                    {
+                        message.text = currentInterObjScript.objectName + " is locked";
+                        message.SendMessage("FadeAway");
+                    }   
                 }
                 //if object can be opened, opens it (or closes)
-                if (!((OpenableObject)currentInterObjScript).isLocked)
+                else if (!((OpenableObject)currentInterObjScript).isLocked)
                 {
                     currentInterObject.SendMessage("DoInteraction");
                 }
@@ -81,12 +87,15 @@ public class PlayerInteract : MonoBehaviour {
             {
                 other.gameObject.SetActive(false);
                 HealthBarScript.TakeBonus();
+
+                message.text = "Health restored";
+                message.SendMessage("FadeAway");
             }
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        //when item becomes out of range, it is not current interactable object anymore (can't pick up)
+        //when item becomes out of range, it is not current interactable object anymore (can't interact)
         if (other.CompareTag("interObject"))
         {
             if(other.gameObject == currentInterObject)

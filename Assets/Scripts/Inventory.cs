@@ -6,6 +6,7 @@ public class Inventory : MonoBehaviour {
     public GameObject[] inventory = new GameObject[10];//inventory array to store items
     public Button[] InventoryButtons = new Button[10]; //array for display
     public int activeSlot = -1; //active item slot, -1 means not selected
+    public Text message; //text of message associated with inventory
 
     public void Start()
     {
@@ -28,7 +29,7 @@ public class Inventory : MonoBehaviour {
                 inventory[i] = item;
                 //update UI
                 InventoryButtons[i].GetComponentInChildren<Text>().text = "+";
-                Debug.Log(item.name + " was added");
+                item.SendMessage("UpdateUI");
                 itemAdded = true;
                 //do something with the object
                 item.SendMessage("DoInteraction");
@@ -39,7 +40,8 @@ public class Inventory : MonoBehaviour {
         //inventory was full
         if (!itemAdded)
         {
-            Debug.Log("Inventory full");
+            message.text = "Inventory full";
+            message.SendMessage("FadeAway");
         }
     }
 
