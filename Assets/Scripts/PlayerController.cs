@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour {
         // Update for moovement
         //If player is dead, movement is disabled.
         if (HealthBarScript.health <= 0) { }
+        else if (HealthBarScript.levelCompleted == true) { }
 
         else if (Input.anyKey)
             Move();

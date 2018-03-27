@@ -12,14 +12,14 @@ public class OpenableObject : InteractionObject {
     {
         if (isOpened)
         {
-            transform.Rotate(transform.rotation.x, transform.rotation.y + 45, transform.rotation.z);
+            transform.Rotate(transform.rotation.x, transform.rotation.y + 70, transform.rotation.z);
             isOpened = false;
             message.text = objectName + " was closed";
             message.SendMessage("FadeAway");
         }
         else
         {
-            transform.Rotate(transform.rotation.x, transform.rotation.y - 45, transform.rotation.z);
+            transform.Rotate(transform.rotation.x, transform.rotation.y - 70, transform.rotation.z);
             isOpened = true;
             message.text = objectName + " was opened";
             message.SendMessage("FadeAway");
