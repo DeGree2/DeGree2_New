@@ -100,6 +100,14 @@ public class PlayerInteract : MonoBehaviour {
                 message.SendMessage("FadeAway");
             }
         }
+        if (other.CompareTag("completed"))
+        {
+                other.gameObject.SetActive(false);
+
+                message.text = "Level completed";
+                message.SendMessage("FadeAway");
+            HealthBarScript.levelCompleted = true;
+        }
     }
     private void OnTriggerExit(Collider other)
     {

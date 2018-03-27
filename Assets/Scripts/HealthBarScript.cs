@@ -10,15 +10,23 @@ public class HealthBarScript : MonoBehaviour {
     float maxHealth = 100f;
     public static float health;
     public GameObject gameOverPanel;
+    public GameObject levelCompletedPanel;
+    public static bool levelCompleted = false;
 
-	void Start () {
+    void Start () {
         healthBar = GetComponent<Image> ();
         health = maxHealth; //Starting health is max
         gameOverPanel.SetActive(false); //Game over text is disabled
-	}
+        levelCompletedPanel.SetActive(false);
+
+    }
 	
 	void Update () {
 		healthBar.fillAmount = health/maxHealth;
+        if(levelCompleted)
+        {
+            levelCompletedPanel.SetActive(true);
+        }
         if(health<=0) //If health is 0, game is over
         {
             gameOverPanel.SetActive(true);
