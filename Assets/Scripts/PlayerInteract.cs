@@ -4,10 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerInteract : MonoBehaviour {
+    //CHA1 & CHA2 - Milda Petrikaitė IFF-6/5
+
     public GameObject currentInterObject = null; //current item in range
     public InteractionObject currentInterObjScript = null;
     public Inventory inventory;
     public Text message; //text of message associated with interactions
+    Animator anim;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     private void Update()
     {
@@ -20,6 +28,7 @@ public class PlayerInteract : MonoBehaviour {
                 if (((Item)currentInterObjScript).inventory && !((Item)currentInterObjScript).isInInventory)
                 {
                     inventory.AddItem(currentInterObject);
+                    anim.SetTrigger("isPickingUp");
                 }
             }
             //interaction specific for openable object
@@ -39,17 +48,16 @@ public class PlayerInteract : MonoBehaviour {
                     {
                         message.text = currentInterObjScript.objectName + " is locked";
                         message.SendMessage("FadeAway");
-                    }   
+                    }
                 }
                 //if object can be opened, opens it (or closes)
                 else if (!((OpenableObject)currentInterObjScript).isLocked)
                 {
                     currentInterObject.SendMessage("DoInteraction");
                 }
-                
             }
-        }
 
+        }
         //changes active item to the left one from the current on inventory array
         if (Input.GetButtonDown("ActiveLeft"))
         {

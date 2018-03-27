@@ -38,11 +38,12 @@ public class EnemyBehaviour : MonoBehaviour
     private bool turning = false;
     private int turnCount = 0;
 
-
+    Animator anim;
 
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
         GetXYZ();
     }
 
@@ -90,6 +91,8 @@ public class EnemyBehaviour : MonoBehaviour
 
         if (isVisible)
         {
+            anim.SetBool("isAttacking", true);
+            anim.SetBool("isLooking", false);
             Attack();
             playerEscaped = true;
             turning = false;
@@ -97,21 +100,29 @@ public class EnemyBehaviour : MonoBehaviour
         }
         else if (playerEscaped)
         {
+            anim.SetBool("isAttacking", false);
+            anim.SetBool("isLooking", true);
+
             if (turnCount < 210)
             {
                 Rotate();
                 turnCount++;
             }
             else
-            { ContinuePatroling(typeOfPath);
-            playerEscaped = false;}
+            {
+                ContinuePatroling(typeOfPath);
+                anim.SetBool("isAttacking", false); 
+                anim.SetBool("isLooking", false);
+                playerEscaped = false;
+            }
             //ReturnToPath(typeOfPath);
             
         }
         else 
         {
             ContinuePatroling(typeOfPath);
-            
+            anim.SetBool("isAttacking", false);
+            anim.SetBool("isLooking", false);
         }
 
 
