@@ -1,36 +1,64 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using System.Globalization;
-
 
 
 public class EnemyBehaviour : MonoBehaviour
 {
+    NavMeshAgent navMeshAgent;
+    public float timeForNewPath;
+    public int attackType;
+    bool inCoroutine;
+    bool searchMode = false;
+    NavMeshPath path;
+    bool validPath;
+
+    [Range(0, 50)]
+    public float searchArea;
+
+    bool followMode = false;
+
+    [SerializeField]
+    float attackSpeed;
+
+    [SerializeField]
+    float searchDuration;
+
+
+    bool neutralMode = true;
 
     [SerializeField]
     string[] Points;
 
+    bool searchBegan;
+
     [SerializeField]
     float speed;
 
-    [SerializeField]
-    float searchModeSpeed;
+    float searchModeSpeed = 100;
 
     [SerializeField]
     int typeOfPath;
 
     EnemyVision scriptVision;
 
-    private int current = 0;
+    private int current = -1;
     private Vector3 target;
     private float[] X = new float[10];
     private float[] Y = new float[10];
     private float[] Z = new float[10];
     private float turnSpeed = 5f;
     private new Rigidbody rigidbody;
-    
-    
+    Animator anim;
+
+    bool modifiedSpeed;
+
+    int startedSearching = 0;
+    int startedSearching2 = 0;
+
+
     private bool isVisible;
     private bool playerEscaped;
     private System.Random ran = new System.Random();
@@ -38,13 +66,10 @@ public class EnemyBehaviour : MonoBehaviour
     private bool turning = false;
     private int turnCount = 0;
 
+    public Transform AttackTarget;
 
-
-    void Start()
-    {
-        rigidbody = GetComponent<Rigidbody>();
-        GetXYZ();
-    }
+    private bool reversePath;
+    
 
     void GetXYZ()
     {
@@ -62,77 +87,201 @@ public class EnemyBehaviour : MonoBehaviour
 
         }
 
-        target = new Vector3(X[0], Y[0], Z[0]);
-        transform.LookAt(target);
+    }
 
+    Vector3 getRandomPosition()
+    {
+        float x = Random.Range(-searchArea, searchArea);
+        float z = Random.Range(-searchArea, searchArea);
+
+        Vector3 pos = new Vector3(x, 0, z);
+        return pos;
+    }
+
+    Vector3 getSetPosition1()
+    {
+
+        float dist = navMeshAgent.remainingDistance;
+
+
+        if (current == Points.Length)
+        {
+            current = 0;
+            target = new Vector3(X[current], Y[current], Z[current]);
+
+        }
+        else if (dist != Mathf.Infinity && navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete && navMeshAgent.remainingDistance == 0)
+        {
+            current++;
+            target = new Vector3(X[current], Y[current], Z[current]);
+
+        }
+
+        return target;
     }
 
 
-
-
-    // Update is called once per frame
-    void Update()
+    Vector3 getSetPosition2()
     {
         
+
+        float dist = navMeshAgent.remainingDistance;
+
+
+        if (current == Points.Length)
+        {
+            reversePath = true;
+            current--;
+            target = new Vector3(X[current], Y[current], Z[current]);
+            
+        }
+        else if (dist != Mathf.Infinity && navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete && navMeshAgent.remainingDistance == 0)
+        {
+            if (!reversePath)
+            {
+                current++;
+                target = new Vector3(X[current], Y[current], Z[current]);
+            }
+            else
+            {
+                current--;
+                target = new Vector3(X[current], Y[current], Z[current]);
+            }
+        }
+        if (current == 0 && reversePath)
+        {
+            reversePath = false;
+            target = new Vector3(X[current], Y[current], Z[current]);
+        }
+
+        return target;
+    }
+
+
+    Vector3 Follow()
+    {
+        Vector3 pos = AttackTarget.position;
+        target = new Vector3(pos.x, pos.y, pos.z);
+
+        return target;
+    }
+
+    IEnumerator Walk()
+    {
+        inCoroutine = true;
+
+        if (!searchMode)
+            timeForNewPath = 0;
+
+        yield return new WaitForSeconds(timeForNewPath);
+        GetNewPath();
+        
+        inCoroutine = false;
+
+    }
+
+    void GetNewPath()
+    {
+        if (followMode)
+        {
+            target = Follow();
+            navMeshAgent.speed = attackSpeed;
+        }
+        else if (!searchMode)
+        {
+            navMeshAgent.speed = speed;
+
+            switch (typeOfPath)
+            {
+                case 0:
+                    target = getSetPosition1();
+                    break;
+                case 1:
+                    target = getSetPosition2();
+                    break;
+            }
+
+        }
+        else if (searchMode)
+            target = getRandomPosition();
+        
+        navMeshAgent.SetDestination(target);
+    }
+    
+    void Start()
+    {
+        GetXYZ();
+        transform.LookAt(target);
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        path = new NavMeshPath();
+        anim = GetComponent<Animator>();
+    }
+
+
+    void Update()
+    {
         scriptVision = GetComponent<EnemyVision>();
         List<Transform> visible = scriptVision.visibleTargets;
-        
 
-        if (visible.Count == 0)
-            isVisible = false;
-        else isVisible = true;
-
-
-        //Quaternion newRotation = Quaternion.AngleAxis(90, Vector3.up);
-        //transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, .05f);
-
-
-
-        if (isVisible)
+        //neutral
+        if (visible.Count == 0 && !searchMode && !searchBegan)
         {
-            Attack();
-            playerEscaped = true;
-            turning = false;
+            if (!inCoroutine)
+                StartCoroutine(Walk());
+            startedSearching = 0;
+            anim.SetBool("isAttacking", false);
+            anim.SetBool("isLooking", false);
+        }
+        //attack
+        else if (visible.Count != 0)
+        {
+            anim.SetBool("isAttacking", true);
+            anim.SetBool("isLooking", false);
+            transform.LookAt(AttackTarget);
+            followMode = true;
+            searchBegan = true;
+            if (!inCoroutine)
+                StartCoroutine(Walk());
+            startedSearching = 0;
             turnCount = 0;
         }
-        else if (playerEscaped)
+        //search
+        else if ((visible.Count == 0) && searchBegan)
         {
+            anim.SetBool("isAttacking", false);
+            anim.SetBool("isLooking", true);
+            searchMode = true;
+            followMode = false;
+            
             if (turnCount < 210)
             {
                 Rotate();
                 turnCount++;
             }
             else
-            { ContinuePatroling(typeOfPath);
-            playerEscaped = false;}
-            //ReturnToPath(typeOfPath);
-            
+            {
+                if (!inCoroutine)
+                    StartCoroutine(Walk());
+
+
+                if (startedSearching >= searchDuration)
+                {
+                    searchBegan = false;
+                    searchMode = false;
+                }
+                startedSearching++;
+            }
+
         }
-        else 
-        {
-            ContinuePatroling(typeOfPath);
-            
-        }
-
-
-
-
-
     }
 
-    public void Attack()
-    {
-
-    }
-
-
-    public void Rotate()
-    {
-        if (!turning)
+        public void Rotate()
         {
-            turn = ran.Next(0, 2);
-            turning = true;
-        }
+            if (!turning)
+            {
+                turn = ran.Next(0, 2);
+                turning = true;
+            }
             Vector3 angles;
             angles = transform.rotation.eulerAngles;
             switch (turn)
@@ -140,7 +289,7 @@ public class EnemyBehaviour : MonoBehaviour
 
                 case 0:
                     angles.y -= Time.deltaTime * searchModeSpeed;
-                    
+
                     break;
                 case 1:
                     angles.y += Time.deltaTime * searchModeSpeed;
@@ -148,45 +297,12 @@ public class EnemyBehaviour : MonoBehaviour
             }
             transform.rotation = Quaternion.Euler(angles);
         }
-    
-
-
-
-    public void ReturnToPath(int typeOfPath)
-    {
-
-    }
-
-    public void ContinuePatroling(int typeOfPath)
-    {
-        if (current == Points.Length)
+        private void OnTriggerEnter(Collider other)
         {
-            current = 0;
-            target = new Vector3(X[current], Y[current], Z[current]);
+            if (other.CompareTag("Player"))
+            {
+                HealthBarScript.Damage();
+            }
         }
-
-        if (transform.position != target)
-        {
-            Vector3 direction = target - transform.position;
-            Quaternion rotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, turnSpeed * Time.deltaTime);
-
-            Vector3 move = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-            GetComponent<Rigidbody>().MovePosition(move);
-        }
-        else
-        {
-            current++;
-            target = new Vector3(X[current], Y[current], Z[current]);
-        }
-    }
-    //Živilė. Player is damaged if touched by enemy
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-           HealthBarScript.Damage();
-        }
-    }
 
 }

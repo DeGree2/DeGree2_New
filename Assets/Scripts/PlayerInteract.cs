@@ -1,11 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInteract : MonoBehaviour {
+    //CHA1 & CHA2 - Milda Petrikaitė IFF-6/5
+
     public GameObject currentInterObject = null; //current item in range
     public InteractionObject currentInterObjScript = null;
     public Inventory inventory;
+    public Text message; //text of message associated with interactions
+    Animator anim;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     private void Update()
     {
@@ -18,6 +28,7 @@ public class PlayerInteract : MonoBehaviour {
                 if (((Item)currentInterObjScript).inventory && !((Item)currentInterObjScript).isInInventory)
                 {
                     inventory.AddItem(currentInterObject);
+                    anim.SetTrigger("isPickingUp");
                 }
             }
             //interaction specific for openable object
@@ -30,20 +41,23 @@ public class PlayerInteract : MonoBehaviour {
                     {
                         //unlocks the object
                         ((OpenableObject)currentInterObjScript).isLocked = false;
-                        Debug.Log(currentInterObject.name + " was unlocked");
+                        message.text = currentInterObjScript.objectName + " was unlocked";
+                        message.SendMessage("FadeAway");
                     }
                     else
-                        Debug.Log(currentInterObject.name + " was not unlocked, key needed");
+                    {
+                        message.text = currentInterObjScript.objectName + " is locked";
+                        message.SendMessage("FadeAway");
+                    }
                 }
                 //if object can be opened, opens it (or closes)
-                if (!((OpenableObject)currentInterObjScript).isLocked)
+                else if (!((OpenableObject)currentInterObjScript).isLocked)
                 {
                     currentInterObject.SendMessage("DoInteraction");
                 }
-                
             }
-        }
 
+        }
         //changes active item to the left one from the current on inventory array
         if (Input.GetButtonDown("ActiveLeft"))
         {
@@ -81,12 +95,15 @@ public class PlayerInteract : MonoBehaviour {
             {
                 other.gameObject.SetActive(false);
                 HealthBarScript.TakeBonus();
+
+                message.text = "Health restored";
+                message.SendMessage("FadeAway");
             }
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        //when item becomes out of range, it is not current interactable object anymore (can't pick up)
+        //when item becomes out of range, it is not current interactable object anymore (can't interact)
         if (other.CompareTag("interObject"))
         {
             if(other.gameObject == currentInterObject)
