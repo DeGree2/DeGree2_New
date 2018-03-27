@@ -51,6 +51,7 @@ public class EnemyBehaviour : MonoBehaviour
     private float[] Z = new float[10];
     private float turnSpeed = 5f;
     private new Rigidbody rigidbody;
+    Animator anim;
 
     bool modifiedSpeed;
 
@@ -213,6 +214,7 @@ public class EnemyBehaviour : MonoBehaviour
         transform.LookAt(target);
         navMeshAgent = GetComponent<NavMeshAgent>();
         path = new NavMeshPath();
+        anim = GetComponent<Animator>();
     }
 
 
@@ -221,15 +223,20 @@ public class EnemyBehaviour : MonoBehaviour
         scriptVision = GetComponent<EnemyVision>();
         List<Transform> visible = scriptVision.visibleTargets;
 
-
+        //neutral
         if (visible.Count == 0 && !searchMode && !searchBegan)
         {
             if (!inCoroutine)
                 StartCoroutine(Walk());
             startedSearching = 0;
+            anim.SetBool("isAttacking", false);
+            anim.SetBool("isLooking", false);
         }
+        //attack
         else if (visible.Count != 0)
         {
+            anim.SetBool("isAttacking", true);
+            anim.SetBool("isLooking", false);
             transform.LookAt(AttackTarget);
             followMode = true;
             searchBegan = true;
@@ -238,8 +245,11 @@ public class EnemyBehaviour : MonoBehaviour
             startedSearching = 0;
             turnCount = 0;
         }
+        //search
         else if ((visible.Count == 0) && searchBegan)
         {
+            anim.SetBool("isAttacking", false);
+            anim.SetBool("isLooking", true);
             searchMode = true;
             followMode = false;
             
