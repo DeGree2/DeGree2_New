@@ -44,4 +44,11 @@ public class HealthBarScript : MonoBehaviour {
         if (health > 100f) //Health can not go over max
             health = 100f;
     }
+    public static void AddHP(float amount)
+    {
+        //Adds certain amount of health points to current health
+        health += amount;
+        if (health > 100f) //Health can not go over max
+            health = 100f;
+    }
 }
