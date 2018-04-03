@@ -66,12 +66,12 @@ public class PlayerInteract : MonoBehaviour {
 
         if (Input.GetButtonDown("Throw"))
         {
-            
+            inventory.ThrowActive();
         }
 
         if (Input.GetButtonDown("Drop"))
         {
-
+            inventory.DropActive();
         }
     }
 

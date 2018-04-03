@@ -112,4 +112,49 @@ public class Inventory : MonoBehaviour {
             }
         }
     }
+
+    public void DropActive()
+    {
+        if (activeSlot != -1 && inventory[activeSlot] != null)
+        {
+            GameObject drop = inventory[activeSlot];
+            drop.SetActive(true);
+            //chooses position close to player for dropping
+            Vector3 charPosition = gameObject.transform.position;
+            charPosition.y += 1f;
+            Vector3 charDirection = gameObject.transform.forward;
+            Vector3 dropPosition = charPosition + charDirection * 0.7f;
+
+            drop.transform.position = dropPosition;
+            //drop.GetComponent<Rigidbody>().AddForce(dropPosition * 0.5f);
+            drop.SendMessage("Drop"); //resets ability to be stored in inventory again
+            //resets invenotory slot
+            InventoryButtons[activeSlot].GetComponentInChildren<Text>().text = "";
+            inventory[activeSlot] = null;
+            SlotSelect(activeSlot);
+        }
+    }
+
+    public void ThrowActive()
+    {
+        if (activeSlot != -1 && inventory[activeSlot] != null)
+        {
+            GameObject drop = inventory[activeSlot];
+            drop.SetActive(true);
+            //chooses position close to player for dropping, then for throwing
+            Vector3 charPosition = gameObject.transform.position;
+            charPosition.y += 1.5f;
+            Vector3 charDirection = gameObject.transform.forward;
+            Vector3 dropPosition = charPosition + charDirection * 1f;
+            Vector3 throwPosition = charPosition + charDirection * 550f;
+
+            drop.transform.position = dropPosition;
+            drop.GetComponent<Rigidbody>().AddForce(throwPosition);
+            drop.SendMessage("Drop"); //resets ability to be stored in inventory again
+            //resets invenotory slot
+            InventoryButtons[activeSlot].GetComponentInChildren<Text>().text = "";
+            inventory[activeSlot] = null;
+            SlotSelect(activeSlot);
+        }
+    }
 }
