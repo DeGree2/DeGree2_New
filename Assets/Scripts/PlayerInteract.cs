@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerInteract : MonoBehaviour {
-    //CHA1 & CHA2 - Milda Petrikaitė IFF-6/5
-
     public GameObject currentInterObject = null; //current item in range
     public InteractionObject currentInterObjScript = null;
     public Inventory inventory;
@@ -58,22 +56,21 @@ public class PlayerInteract : MonoBehaviour {
             }
 
         }
-        //changes active item to the left one from the current on inventory array
-        if (Input.GetButtonDown("ActiveLeft"))
-        {
-            inventory.SetActiveLeft();
-        }
-
-        //changes active item to the right one from the current on inventory array
-        if (Input.GetButtonDown("ActiveRight"))
-        {
-            inventory.SetActiveRight();
-        }
 
         //uses currently active item from inventory
-        if (Input.GetButtonDown("UseActiveItem"))
+        if (Input.GetButtonDown("Use"))
         {
             inventory.UseActive();
+        }
+
+        if (Input.GetButtonDown("Throw"))
+        {
+            
+        }
+
+        if (Input.GetButtonDown("Drop"))
+        {
+
         }
     }
 

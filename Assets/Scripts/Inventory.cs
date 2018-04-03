@@ -11,10 +11,29 @@ public class Inventory : MonoBehaviour {
     public void Start()
     {
         //making sure inventory is empty in the beginning
-        for(int i = 0; i<10; i++)
+        for(int i = 0; i < 10; i++)
         {
             inventory[i] = null;
         }
+    }
+
+    public void SlotSelect(int index)
+    {
+        if (inventory[index] != null && activeSlot != index) //selects if slot is occupied and different from active
+        {
+            if(activeSlot != -1)
+            {
+                InventoryButtons[activeSlot].GetComponent<Image>().color = Color.white;
+            }
+            activeSlot = index;
+            InventoryButtons[index].GetComponent<Image>().color = Color.grey;
+        }
+        else //deselects if selected the same button or if slot is empty
+        {
+            InventoryButtons[index].GetComponent<Image>().color = Color.white;
+            activeSlot = -1;
+        }
+        Debug.Log(activeSlot);
     }
 
     public void AddItem(GameObject item)
@@ -47,46 +66,12 @@ public class Inventory : MonoBehaviour {
 
     public bool FindItem(GameObject item)
     {
-        for(int i = 0; i < inventory.Length; i++)
+        for (int i = 0; i < inventory.Length; i++)
         {
             if (inventory[i] == item)
                 return true; //item found
         }
         return false; //item not present in inventory
-    }
-
-    //sets slot as active left from currently active
-    public void SetActiveLeft()
-    {
-        //if none selected yet, sets as last
-        if (activeSlot == -1)
-            activeSlot = inventory.Length - 1;
-        //changes currently active slot to normal color and calculates the next slot
-        else
-        {
-            InventoryButtons[activeSlot].GetComponent<Image>().color = Color.white;
-            activeSlot--;
-            if (activeSlot == -1)
-                activeSlot = activeSlot + inventory.Length;
-        }
-        //changes the color of currently active slot
-        InventoryButtons[activeSlot].GetComponent<Image>().color = Color.grey;
-    }
-
-    //sets slot as active right from currently active
-    public void SetActiveRight()
-    {
-        //if none selected yet, sets as first
-        if (activeSlot == -1)
-            activeSlot = 0;
-        //changes currently active slot to normal color and calculates the next slot
-        else
-        {
-            InventoryButtons[activeSlot].GetComponent<Image>().color = Color.white;
-            activeSlot = (activeSlot + 1) % inventory.Length;
-        }
-        //changes the color of currently active slot
-        InventoryButtons[activeSlot].GetComponent<Image>().color = Color.grey;
     }
 
     //decreases usability of item
@@ -102,12 +87,13 @@ public class Inventory : MonoBehaviour {
                 Debug.Log(inventory[activeSlot].name + " was used and reached its usability limit");
                 InventoryButtons[activeSlot].GetComponentInChildren<Text>().text = "";
                 inventory[activeSlot] = null;
+                SlotSelect(activeSlot);
             }
             else
             {
                 inventory[activeSlot].SetActive(false);
                 Debug.Log(inventory[activeSlot].name + " was used but has not reached its usability limit");
-            } 
+            }
         }
     }
 }
