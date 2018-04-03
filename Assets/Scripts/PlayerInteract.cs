@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerInteract : MonoBehaviour {
     public GameObject currentInterObject = null; //current item in range
     public InteractionObject currentInterObjScript = null;
+    public GameObject enemyInRange = null; //current enemy in range
     public Inventory inventory;
     public Text message; //text of message associated with interactions
     Animator anim;
@@ -60,7 +61,7 @@ public class PlayerInteract : MonoBehaviour {
         //uses currently active item from inventory
         if (Input.GetButtonDown("Use"))
         {
-            inventory.UseActive();
+            inventory.UseActive(enemyInRange);
         }
 
         if (Input.GetButtonDown("Throw"))
@@ -82,6 +83,12 @@ public class PlayerInteract : MonoBehaviour {
             currentInterObject = other.gameObject;
             currentInterObjScript = currentInterObject.GetComponent<InteractionObject>();
 
+        }
+
+        //notices enemy in range (needed for ability to kill robot)
+        if (other.CompareTag("enemy"))
+        {
+            enemyInRange = other.gameObject;
         }
 
 
@@ -114,6 +121,14 @@ public class PlayerInteract : MonoBehaviour {
             if(other.gameObject == currentInterObject)
             {
                 currentInterObject = null;
+            }
+        }
+
+        if (other.CompareTag("enemy"))
+        {
+            if (other.gameObject == enemyInRange)
+            {
+                enemyInRange = null;
             }
         }
     }

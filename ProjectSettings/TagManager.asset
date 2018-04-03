@@ -6,6 +6,8 @@ TagManager:
   tags:
   - interObject
   - bonusHealth
+  - completed
+  - enemy
   layers:
   - Default
   - TransparentFX

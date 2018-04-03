@@ -75,12 +75,28 @@ public class Inventory : MonoBehaviour {
     }
 
     //decreases usability of item
-    public void UseActive()
+    public void UseActive(GameObject enemyInRange)
     {
         if(activeSlot != -1 && inventory[activeSlot] != null)
         {
             inventory[activeSlot].SetActive(true);
-            inventory[activeSlot].SendMessage("Use");
+            Item temp = inventory[activeSlot].GetComponent<Item>();
+            if (temp.weapon) //if item is weapon, using it destroys enemy
+            {
+                if (enemyInRange)
+                {
+                    inventory[activeSlot].SendMessage("Use");
+                    Debug.Log("Killed enemy " + enemyInRange.name); //enemyInRange.sendMessage("Die"); ?
+                }
+                else
+                {
+                    message.text = "No enemy in range!";
+                    message.SendMessage("FadeAway");
+                }
+            }
+            else
+                inventory[activeSlot].SendMessage("Use");
+            
             //if item was deactivated, usability is 0, so it is removed from inventory
             if (!inventory[activeSlot].activeInHierarchy)
             {

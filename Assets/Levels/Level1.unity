@@ -1529,6 +1529,7 @@ MonoBehaviour:
   isInInventory: 0
   usage: -1
   hp: 0
+  weapon: 0
 --- !u!54 &403639936
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2326,6 +2327,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100138, guid: 955d19db0ee9363409b46dde3e78ca22, type: 3}
+      propertyPath: m_TagString
+      value: enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 955d19db0ee9363409b46dde3e78ca22, type: 3}
   m_IsPrefabParent: 0
@@ -2767,6 +2772,7 @@ MonoBehaviour:
   isInInventory: 0
   usage: -1
   hp: 0
+  weapon: 0
 --- !u!114 &603371000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2910,6 +2916,7 @@ MonoBehaviour:
   isInInventory: 0
   usage: 1
   hp: 5
+  weapon: 0
 --- !u!114 &657053349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4042,6 +4049,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentInterObject: {fileID: 0}
   currentInterObjScript: {fileID: 0}
+  enemyInRange: {fileID: 0}
   inventory: {fileID: 854134338}
   message: {fileID: 1443887367}
 --- !u!114 &854134338
@@ -5315,6 +5323,10 @@ Prefab:
     - target: {fileID: 400138, guid: 955d19db0ee9363409b46dde3e78ca22, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100138, guid: 955d19db0ee9363409b46dde3e78ca22, type: 3}
+      propertyPath: m_TagString
+      value: enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 955d19db0ee9363409b46dde3e78ca22, type: 3}
@@ -7652,6 +7664,7 @@ MonoBehaviour:
   isInInventory: 0
   usage: 1
   hp: 0
+  weapon: 0
 --- !u!114 &1475422235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7991,6 +8004,7 @@ MonoBehaviour:
   isInInventory: 0
   usage: 1
   hp: 5
+  weapon: 0
 --- !u!114 &1542526501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9384,6 +9398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentInterObject: {fileID: 0}
   currentInterObjScript: {fileID: 0}
+  enemyInRange: {fileID: 0}
   inventory: {fileID: 1620613506}
   message: {fileID: 1443887367}
 --- !u!114 &1620613506
@@ -9945,6 +9960,7 @@ MonoBehaviour:
   isInInventory: 0
   usage: 1
   hp: 5
+  weapon: 0
 --- !u!114 &1794927022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10838,12 +10854,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00a7a14fbdc3ac54a99253f888634bf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectName: Chocolate Bar
+  objectName: Bucket Of Water
   message: {fileID: 1443887367}
   inventory: 1
   isInInventory: 0
   usage: 1
-  hp: 5
+  hp: 0
+  weapon: 1
 --- !u!114 &1949994518
 MonoBehaviour:
   m_ObjectHideFlags: 0
