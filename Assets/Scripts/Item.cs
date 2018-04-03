@@ -6,6 +6,7 @@ public class Item : InteractionObject {
     public bool inventory = true; //if true, can be stored in inventory
     public bool isInInventory = false; //if true, item is currently in inventory
     public int usage = 1; //how many times item can be used, -1 for quest items
+    public float hp = 0f; //adds certain amount of HP when used
 
     public override void DoInteraction()
     {
@@ -20,6 +21,7 @@ public class Item : InteractionObject {
         if (usage > 0)
         {
             usage--;
+            HealthBarScript.AddHP(hp); //when used, adds hp
             //deactivates item if it cannot be used anymore
             if (usage == 0)
                 gameObject.SetActive(false);
