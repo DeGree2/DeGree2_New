@@ -16,6 +16,11 @@ public class Item : InteractionObject {
         isInInventory = true;
     }
 
+    public void Drop()
+    {
+        isInInventory = false;
+    }
+
     public void Use()
     {
         //decreases usage
