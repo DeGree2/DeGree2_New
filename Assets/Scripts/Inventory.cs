@@ -18,6 +18,7 @@ public class Inventory : MonoBehaviour {
         }
     }
 
+    //marks/unmarks slot as active
     public void SlotSelect(int index)
     {
         if (inventory[index] != null && activeSlot != index) //selects if slot is occupied and different from active
@@ -34,7 +35,23 @@ public class Inventory : MonoBehaviour {
             InventoryButtons[index].GetComponent<Image>().color = Color.white;
             activeSlot = -1;
         }
-        Debug.Log(activeSlot);
+    }
+
+    public void SlotDeselect()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            InventoryButtons[i].GetComponent<Image>().color = Color.white;
+        }
+        activeSlot = -1;
+    }
+
+    //checks if any item is selected
+    public bool HasActive()
+    {
+        if (activeSlot == -1)
+            return false;
+        return true;
     }
 
     public void AddItem(GameObject item)
@@ -106,16 +123,18 @@ public class Inventory : MonoBehaviour {
                 Debug.Log(inventory[activeSlot].name + " was used and reached its usability limit");
                 InventoryButtons[activeSlot].GetComponentInChildren<Text>().text = "";
                 inventory[activeSlot] = null;
-                SlotSelect(activeSlot);
             }
             else
             {
                 inventory[activeSlot].SetActive(false);
                 Debug.Log(inventory[activeSlot].name + " was used but has not reached its usability limit");
             }
+
+            SlotDeselect();
         }
     }
 
+    //Drops active item from inventory on the ground
     public void DropActive()
     {
         if (activeSlot != -1 && inventory[activeSlot] != null)
@@ -129,7 +148,6 @@ public class Inventory : MonoBehaviour {
             Vector3 dropPosition = charPosition + charDirection * 0.7f;
 
             drop.transform.position = dropPosition;
-            //drop.GetComponent<Rigidbody>().AddForce(dropPosition * 0.5f);
             drop.SendMessage("Drop"); //resets ability to be stored in inventory again
             //resets invenotory slot
             InventoryButtons[activeSlot].GetComponentInChildren<Text>().text = "";
@@ -138,6 +156,7 @@ public class Inventory : MonoBehaviour {
         }
     }
 
+    //Throws active item from inventory on the ground (with force), (similar to drop, currently unused)
     public void ThrowActive()
     {
         if (activeSlot != -1 && inventory[activeSlot] != null)

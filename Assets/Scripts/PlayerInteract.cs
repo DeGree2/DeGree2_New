@@ -23,57 +23,53 @@ public class PlayerInteract : MonoBehaviour {
     private void Update()
     {
         //if there is a current interactable object, interacts with it
-        if (Input.GetButtonDown("Interact") && currentInterObject)
+        if (Input.GetButtonDown("Interact"))
         {
-            //interaction specific for item (checks to see if item is to be stored in inventory and adds it)
-            if (currentInterObjScript is Item)
+            if (inventory.HasActive())
             {
-                if (((Item)currentInterObjScript).inventory && !((Item)currentInterObjScript).isInInventory)
-                {
-                    inventory.AddItem(currentInterObject);
-                    anim.SetTrigger("isPickingUp");
-                    currentInterObject.layer = layerIndex;
-                }
+                inventory.UseActive(enemyInRange);
             }
-            //interaction specific for openable object
-            else if (currentInterObjScript is OpenableObject)
+            else if (currentInterObject)
             {
-                if (((OpenableObject)currentInterObjScript).isLocked)
+                //interaction specific for item (checks to see if item is to be stored in inventory and adds it)
+                if (currentInterObjScript is Item)
                 {
-                    //checks if specific item is in inventory
-                    if (inventory.FindItem(((OpenableObject)currentInterObjScript).key))
+                    if (((Item)currentInterObjScript).inventory && !((Item)currentInterObjScript).isInInventory)
                     {
-                        //unlocks the object
-                        ((OpenableObject)currentInterObjScript).isLocked = false;
-                        message.text = currentInterObjScript.objectName + " was unlocked";
-                        message.SendMessage("FadeAway");
-                    }
-                    else
-                    {
-                        message.text = currentInterObjScript.objectName + " is locked";
-                        message.SendMessage("FadeAway");
+                        inventory.AddItem(currentInterObject);
+                        anim.SetTrigger("isPickingUp");
+                        currentInterObject.layer = layerIndex;
                     }
                 }
-                //if object can be opened, opens it (or closes)
-                else if (!((OpenableObject)currentInterObjScript).isLocked)
+                //interaction specific for openable object
+                else if (currentInterObjScript is OpenableObject)
                 {
-                    currentInterObject.SendMessage("DoInteraction");
+                    if (((OpenableObject)currentInterObjScript).isLocked)
+                    {
+                        //checks if specific item is in inventory
+                        if (inventory.FindItem(((OpenableObject)currentInterObjScript).key))
+                        {
+                            //unlocks the object
+                            ((OpenableObject)currentInterObjScript).isLocked = false;
+                            message.text = currentInterObjScript.objectName + " was unlocked";
+                            message.SendMessage("FadeAway");
+                        }
+                        else
+                        {
+                            message.text = currentInterObjScript.objectName + " is locked";
+                            message.SendMessage("FadeAway");
+                        }
+                    }
+                    //if object can be opened, opens it (or closes)
+                    else if (!((OpenableObject)currentInterObjScript).isLocked)
+                    {
+                        currentInterObject.SendMessage("DoInteraction");
+                    }
                 }
             }
-
         }
 
-        //uses currently active item from inventory
-        if (Input.GetButtonDown("Use"))
-        {
-            inventory.UseActive(enemyInRange);
-        }
-
-        if (Input.GetButtonDown("Throw"))
-        {
-            inventory.ThrowActive();
-        }
-
+        //drops currently active item from inventory
         if (Input.GetButtonDown("Drop"))
         {
             inventory.DropActive();
