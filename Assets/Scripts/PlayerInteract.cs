@@ -10,9 +10,13 @@ public class PlayerInteract : MonoBehaviour {
     public Inventory inventory;
     public Text message; //text of message associated with interactions
     Animator anim;
+    string layerName = "ThrownObject";
+    int layerIndex;
+    
 
     private void Start()
     {
+        layerIndex = LayerMask.NameToLayer(layerName);
         anim = GetComponent<Animator>();
     }
 
@@ -28,6 +32,7 @@ public class PlayerInteract : MonoBehaviour {
                 {
                     inventory.AddItem(currentInterObject);
                     anim.SetTrigger("isPickingUp");
+                    currentInterObject.layer = layerIndex;
                 }
             }
             //interaction specific for openable object

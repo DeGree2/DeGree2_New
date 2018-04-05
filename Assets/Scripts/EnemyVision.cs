@@ -5,18 +5,30 @@ using UnityEngine;
 
 public class EnemyVision : MonoBehaviour {
 
+    [Range(0, 20)]
     public float viewRadius;
     [Range(0, 360)]
     public float viewAngle;
 
     public float visionDelay;
 
+
     public LayerMask targetMask;
     public LayerMask obstacleMask;
+    public LayerMask objectMask;
+   // public string objectTag;
+    string layerName = "ThrownObject";
 
     [HideInInspector]
     public List<Transform> visibleTargets = new List<Transform>();
-    public bool isVisible;
+
+    [HideInInspector]
+    public List<Transform> visibleObjects = new List<Transform>();
+    //public bool isVisible;
+    [HideInInspector]
+    public GameObject interObj;
+
+    EnemyBehaviour behavior;
 
     public float meshResolution;
     public int edgeResolveIterations;
@@ -24,6 +36,10 @@ public class EnemyVision : MonoBehaviour {
 
     public MeshFilter viewMeshFilter;
     Mesh viewMesh;
+    GameObject[] objs;
+
+    
+    bool changeLayer;
 
 
     void Start()
@@ -46,14 +62,20 @@ public class EnemyVision : MonoBehaviour {
 
     void Update()
     {
+        behavior = GetComponent<EnemyBehaviour>();
+        changeLayer = behavior.changeLayerToDefault;
+
         DrawFieldOfView();
     }
 
     void FindVisibleTargets()
     {
         visibleTargets.Clear();
+        visibleObjects.Clear();
 
         Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+        Collider[] objectsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, objectMask);
+        
 
         for (int i = 0; i < targetsInViewRadius.Length; i++)
         {
@@ -66,10 +88,31 @@ public class EnemyVision : MonoBehaviour {
                 if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
                 {
                     visibleTargets.Add(target);
+                    
                 }
-
             }
         }
+
+        for (int i = 0; i < objectsInViewRadius.Length; i++)
+        {
+            Transform target = objectsInViewRadius[i].transform;
+            Vector3 dirToTarget = (target.position - transform.position).normalized;
+            if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
+            {
+                float dstToTarget = Vector3.Distance(transform.position, target.position);
+
+                if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
+                {
+                    visibleObjects.Add(target);
+
+                    if (changeLayer)
+                    {
+                        objectsInViewRadius[i].gameObject.layer = 0;
+                    }
+                }
+            }
+        }
+
     }
 
 
