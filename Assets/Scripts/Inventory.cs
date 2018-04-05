@@ -7,6 +7,7 @@ public class Inventory : MonoBehaviour {
     public Button[] InventoryButtons = new Button[10]; //array for display
     public int activeSlot = -1; //active item slot, -1 means not selected
     public Text message; //text of message associated with inventory
+    public bool enemyDamaged;  //vital for enemyBehavior
 
     public void Start()
     {
@@ -83,10 +84,12 @@ public class Inventory : MonoBehaviour {
             Item temp = inventory[activeSlot].GetComponent<Item>();
             if (temp.weapon) //if item is weapon, using it destroys enemy
             {
+                enemyDamaged = false;   //no touching pls :)
                 if (enemyInRange)
                 {
                     inventory[activeSlot].SendMessage("Use");
                     Debug.Log("Killed enemy " + enemyInRange.name); //enemyInRange.sendMessage("Die"); ?
+                    enemyDamaged = true;    //no touching pls :)
                 }
                 else
                 {
