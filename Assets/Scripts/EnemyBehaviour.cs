@@ -401,7 +401,7 @@ public class EnemyBehaviour : MonoBehaviour
             //search
             else if ((visibleT.Count == 0) && searchBegan)
             {
-                
+                navMeshAgent.speed = attackSpeed;
                 firstTime0 = 0;
 
                
