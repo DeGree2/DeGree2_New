@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1508,7 +1508,7 @@ GameObject:
   - component: {fileID: 403639936}
   - component: {fileID: 403639942}
   m_Layer: 0
-  m_Name: Test Item (3)
+  m_Name: Raktas2
   m_TagString: interObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2382,9 +2382,9 @@ MonoBehaviour:
   - 25;1;20
   - 25;1;30
   - 30;1;30
-  speed: 2
+  speed: 3
   attackType: 0
-  attackSpeed: 3
+  attackSpeed: 6
   searchDuration: 1300
   playerDamager: {fileID: 1620613506}
   playerTarget: {fileID: 1620613503}
@@ -2697,7 +2697,6 @@ Transform:
   - {fileID: 1475422231}
   - {fileID: 1794927018}
   - {fileID: 1542526497}
-  - {fileID: 2032538534}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2717,7 +2716,7 @@ GameObject:
   - component: {fileID: 603370998}
   - component: {fileID: 603370997}
   m_Layer: 0
-  m_Name: Test Item (4)
+  m_Name: Raktas
   m_TagString: interObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2861,7 +2860,7 @@ GameObject:
   - component: {fileID: 657053347}
   - component: {fileID: 657053346}
   m_Layer: 0
-  m_Name: Test Item (5)
+  m_Name: Burgeris
   m_TagString: interObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2873,13 +2872,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 657053344}
-  m_LocalRotation: {x: 0.66550696, y: 0.19211365, z: -0.17612305, w: 0.69940937}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 35.75, y: -0.37, z: -1.88}
-  m_LocalScale: {x: 0.9999998, y: 0.9999997, z: 0.9999999}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 599060990}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 93.037994, y: -139.65, z: -169.847}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &657053346
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2890,7 +2889,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 0.25
   m_Center: {x: -0.0000009536743, y: 0, z: -0.000000059604645}
 --- !u!54 &657053347
 Rigidbody:
@@ -2918,7 +2917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00a7a14fbdc3ac54a99253f888634bf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectName: Chocolate Bar
+  objectName: Burger
   message: {fileID: 1443887367}
   inventory: 1
   isInInventory: 0
@@ -2950,7 +2949,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: a3d9b806590346245962b81269eb8179, type: 2}
+  - {fileID: 2100000, guid: dd4330fb196ead84ea9d14e6bbbe8ed5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2980,7 +2979,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &657053352
 MeshFilter:
@@ -2988,7 +2987,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 657053344}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 430156879fec00b4c8be6e44eab84172, type: 3}
 --- !u!1 &661098143
 GameObject:
   m_ObjectHideFlags: 0
@@ -6447,9 +6446,9 @@ MonoBehaviour:
   - 15;1;43
   - 22;1;45
   - 31;1;44
-  speed: 2
+  speed: 3
   attackType: 0
-  attackSpeed: 3
+  attackSpeed: 6
   searchDuration: 500
   playerDamager: {fileID: 1620613506}
   playerTarget: {fileID: 1620613503}
@@ -7777,7 +7776,7 @@ GameObject:
   - component: {fileID: 1475422233}
   - component: {fileID: 1475422232}
   m_Layer: 0
-  m_Name: Test Item (7)
+  m_Name: Spurga
   m_TagString: interObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7789,13 +7788,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1475422230}
-  m_LocalRotation: {x: 0.66550696, y: 0.19211365, z: -0.17612305, w: 0.69940937}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 20.14, y: -0.42, z: 23.1}
-  m_LocalScale: {x: 0.9999998, y: 0.9999997, z: 0.9999999}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 599060990}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 93.037994, y: -139.65, z: -169.847}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &1475422232
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -7806,7 +7805,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 0.25
   m_Center: {x: -0.0000009536743, y: 0, z: -0.000000059604645}
 --- !u!54 &1475422233
 Rigidbody:
@@ -7834,12 +7833,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00a7a14fbdc3ac54a99253f888634bf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectName: Melted Chocolate Bar
+  objectName: Donut
   message: {fileID: 1443887367}
   inventory: 1
   isInInventory: 0
   usage: 1
-  hp: 0
+  hp: 5
   weapon: 0
 --- !u!114 &1475422235
 MonoBehaviour:
@@ -7866,7 +7865,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: a3d9b806590346245962b81269eb8179, type: 2}
+  - {fileID: 2100000, guid: dd4330fb196ead84ea9d14e6bbbe8ed5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7896,7 +7895,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1475422238
 MeshFilter:
@@ -7904,7 +7903,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1475422230}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 4526a86407f95894b9d00e13d5ebfc70, type: 3}
 --- !u!1 &1512146548
 GameObject:
   m_ObjectHideFlags: 0
@@ -8117,7 +8116,7 @@ GameObject:
   - component: {fileID: 1542526499}
   - component: {fileID: 1542526498}
   m_Layer: 0
-  m_Name: Test Item (9)
+  m_Name: Muffin
   m_TagString: interObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8129,13 +8128,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1542526496}
-  m_LocalRotation: {x: 0.66550696, y: 0.19211365, z: -0.17612305, w: 0.69940937}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 24.58, y: -0.44, z: -8.69}
-  m_LocalScale: {x: 0.9999998, y: 0.9999997, z: 0.9999999}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 599060990}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 93.037994, y: -139.65, z: -169.847}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &1542526498
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8146,7 +8145,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 0.25
   m_Center: {x: -0.0000009536743, y: 0, z: -0.000000059604645}
 --- !u!54 &1542526499
 Rigidbody:
@@ -8174,7 +8173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00a7a14fbdc3ac54a99253f888634bf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectName: Chocolate Bar
+  objectName: Muffin
   message: {fileID: 1443887367}
   inventory: 1
   isInInventory: 0
@@ -8206,7 +8205,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: a3d9b806590346245962b81269eb8179, type: 2}
+  - {fileID: 2100000, guid: dd4330fb196ead84ea9d14e6bbbe8ed5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8236,7 +8235,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1542526504
 MeshFilter:
@@ -8244,7 +8243,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1542526496}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: f2fa079d2ae9ea34c8c51bb4a4342e49, type: 3}
 --- !u!1 &1549170278
 GameObject:
   m_ObjectHideFlags: 0
@@ -9624,7 +9623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bb533c23b29d0a4eb360688d0c8c6b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 7
 --- !u!114 &1620613508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10080,7 +10079,7 @@ GameObject:
   - component: {fileID: 1794927020}
   - component: {fileID: 1794927019}
   m_Layer: 0
-  m_Name: Test Item (8)
+  m_Name: Vynas
   m_TagString: interObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10092,13 +10091,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1794927017}
-  m_LocalRotation: {x: 0.66550696, y: 0.19211365, z: -0.17612305, w: 0.69940937}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 24.96, y: -0.53, z: 14.68}
-  m_LocalScale: {x: 0.9999998, y: 0.9999997, z: 0.9999999}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 599060990}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 93.037994, y: -139.65, z: -169.847}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &1794927019
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10109,7 +10108,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 0.25
   m_Center: {x: -0.0000009536743, y: 0, z: -0.000000059604645}
 --- !u!54 &1794927020
 Rigidbody:
@@ -10137,12 +10136,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00a7a14fbdc3ac54a99253f888634bf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectName: Chocolate Bar
+  objectName: Bottle of Wine
   message: {fileID: 1443887367}
   inventory: 1
   isInInventory: 0
   usage: 1
-  hp: 5
+  hp: 0
   weapon: 0
 --- !u!114 &1794927022
 MonoBehaviour:
@@ -10169,7 +10168,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: a3d9b806590346245962b81269eb8179, type: 2}
+  - {fileID: 2100000, guid: dd4330fb196ead84ea9d14e6bbbe8ed5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10199,7 +10198,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1794927025
 MeshFilter:
@@ -10207,7 +10206,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1794927017}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 6c7dbfd367d792747aa39a4afc52eb72, type: 3}
 --- !u!1 &1857434775
 GameObject:
   m_ObjectHideFlags: 0
@@ -10909,7 +10908,7 @@ GameObject:
   - component: {fileID: 1949994516}
   - component: {fileID: 1949994515}
   m_Layer: 0
-  m_Name: Test Item (6)
+  m_Name: Kibiras
   m_TagString: interObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10921,13 +10920,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1949994513}
-  m_LocalRotation: {x: 0.66550696, y: 0.19211365, z: -0.17612305, w: 0.69940937}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.44, y: -0.45, z: -2.61}
-  m_LocalScale: {x: 0.9999998, y: 0.9999997, z: 0.9999999}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 599060990}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 93.037994, y: -139.65, z: -169.847}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &1949994515
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10938,7 +10937,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 0.25
   m_Center: {x: -0.0000009536743, y: 0, z: -0.000000059604645}
 --- !u!54 &1949994516
 Rigidbody:
@@ -10998,7 +10997,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: a3d9b806590346245962b81269eb8179, type: 2}
+  - {fileID: 2100000, guid: 83a53197f9a2cb342929e8762736f741, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11028,7 +11027,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.25, y: 0.25, z: 0.25}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1949994521
 MeshFilter:
@@ -11036,7 +11035,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1949994513}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 44b5f2e5029270748882491831746842, type: 3}
 --- !u!1001 &1969799726
 Prefab:
   m_ObjectHideFlags: 0
@@ -11219,150 +11218,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1 &2032538533
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 2032538534}
-  - component: {fileID: 2032538541}
-  - component: {fileID: 2032538540}
-  - component: {fileID: 2032538539}
-  - component: {fileID: 2032538538}
-  - component: {fileID: 2032538537}
-  - component: {fileID: 2032538536}
-  - component: {fileID: 2032538535}
-  m_Layer: 0
-  m_Name: Test Item (10)
-  m_TagString: interObject
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2032538534
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2032538533}
-  m_LocalRotation: {x: 0.66550696, y: 0.19211365, z: -0.17612305, w: 0.69940937}
-  m_LocalPosition: {x: -6.6, y: -0.3, z: -6.4}
-  m_LocalScale: {x: 0.9999998, y: 0.9999997, z: 0.9999999}
-  m_Children: []
-  m_Father: {fileID: 599060990}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 93.037994, y: -139.65, z: -169.847}
---- !u!135 &2032538535
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2032538533}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.5
-  m_Center: {x: -0.0000009536743, y: 0, z: -0.000000059604645}
---- !u!54 &2032538536
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2032538533}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &2032538537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2032538533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00a7a14fbdc3ac54a99253f888634bf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectName: Bucket Of Water
-  message: {fileID: 1443887367}
-  inventory: 1
-  isInInventory: 0
-  usage: 1
-  hp: 0
-  weapon: 1
---- !u!114 &2032538538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2032538533}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49c5a399484ed9b4ba5e96f2979d4b8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!23 &2032538539
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2032538533}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 2100000, guid: a3d9b806590346245962b81269eb8179, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!65 &2032538540
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2032538533}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &2032538541
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2032538533}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &2047929828
 GameObject:
   m_ObjectHideFlags: 0
