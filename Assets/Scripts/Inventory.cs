@@ -7,14 +7,51 @@ public class Inventory : MonoBehaviour {
     public Button[] InventoryButtons = new Button[10]; //array for display
     public int activeSlot = -1; //active item slot, -1 means not selected
     public Text message; //text of message associated with inventory
+    public bool enemyDamaged;  //vital for enemyBehavior
 
     public void Start()
     {
         //making sure inventory is empty in the beginning
-        for(int i = 0; i<10; i++)
+        for(int i = 0; i < 10; i++)
         {
             inventory[i] = null;
         }
+    }
+
+    //marks/unmarks slot as active
+    public void SlotSelect(int index)
+    {
+        if (inventory[index] != null && activeSlot != index) //selects if slot is occupied and different from active
+        {
+            if(activeSlot != -1)
+            {
+                InventoryButtons[activeSlot].GetComponent<Image>().color = Color.white;
+            }
+            activeSlot = index;
+            InventoryButtons[index].GetComponent<Image>().color = Color.grey;
+        }
+        else //deselects if selected the same button or if slot is empty
+        {
+            InventoryButtons[index].GetComponent<Image>().color = Color.white;
+            activeSlot = -1;
+        }
+    }
+
+    public void SlotDeselect()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            InventoryButtons[i].GetComponent<Image>().color = Color.white;
+        }
+        activeSlot = -1;
+    }
+
+    //checks if any item is selected
+    public bool HasActive()
+    {
+        if (activeSlot == -1)
+            return false;
+        return true;
     }
 
     public void AddItem(GameObject item)
@@ -47,7 +84,7 @@ public class Inventory : MonoBehaviour {
 
     public bool FindItem(GameObject item)
     {
-        for(int i = 0; i < inventory.Length; i++)
+        for (int i = 0; i < inventory.Length; i++)
         {
             if (inventory[i] == item)
                 return true; //item found
@@ -55,47 +92,31 @@ public class Inventory : MonoBehaviour {
         return false; //item not present in inventory
     }
 
-    //sets slot as active left from currently active
-    public void SetActiveLeft()
-    {
-        //if none selected yet, sets as last
-        if (activeSlot == -1)
-            activeSlot = inventory.Length - 1;
-        //changes currently active slot to normal color and calculates the next slot
-        else
-        {
-            InventoryButtons[activeSlot].GetComponent<Image>().color = Color.white;
-            activeSlot--;
-            if (activeSlot == -1)
-                activeSlot = activeSlot + inventory.Length;
-        }
-        //changes the color of currently active slot
-        InventoryButtons[activeSlot].GetComponent<Image>().color = Color.grey;
-    }
-
-    //sets slot as active right from currently active
-    public void SetActiveRight()
-    {
-        //if none selected yet, sets as first
-        if (activeSlot == -1)
-            activeSlot = 0;
-        //changes currently active slot to normal color and calculates the next slot
-        else
-        {
-            InventoryButtons[activeSlot].GetComponent<Image>().color = Color.white;
-            activeSlot = (activeSlot + 1) % inventory.Length;
-        }
-        //changes the color of currently active slot
-        InventoryButtons[activeSlot].GetComponent<Image>().color = Color.grey;
-    }
-
     //decreases usability of item
-    public void UseActive()
+    public void UseActive(GameObject enemyInRange)
     {
         if(activeSlot != -1 && inventory[activeSlot] != null)
         {
             inventory[activeSlot].SetActive(true);
-            inventory[activeSlot].SendMessage("Use");
+            Item temp = inventory[activeSlot].GetComponent<Item>();
+            if (temp.weapon) //if item is weapon, using it destroys enemy
+            {
+                enemyDamaged = false;   //no touching pls :)
+                if (enemyInRange)
+                {
+                    inventory[activeSlot].SendMessage("Use");
+                    Debug.Log("Killed enemy " + enemyInRange.name); //enemyInRange.sendMessage("Die"); ?
+                    enemyDamaged = true;    //no touching pls :)
+                }
+                else
+                {
+                    message.text = "No enemy in range!";
+                    message.SendMessage("FadeAway");
+                }
+            }
+            else
+                inventory[activeSlot].SendMessage("Use");
+            
             //if item was deactivated, usability is 0, so it is removed from inventory
             if (!inventory[activeSlot].activeInHierarchy)
             {
@@ -107,7 +128,55 @@ public class Inventory : MonoBehaviour {
             {
                 inventory[activeSlot].SetActive(false);
                 Debug.Log(inventory[activeSlot].name + " was used but has not reached its usability limit");
-            } 
+            }
+
+            SlotDeselect();
+        }
+    }
+
+    //Drops active item from inventory on the ground
+    public void DropActive()
+    {
+        if (activeSlot != -1 && inventory[activeSlot] != null)
+        {
+            GameObject drop = inventory[activeSlot];
+            drop.SetActive(true);
+            //chooses position close to player for dropping
+            Vector3 charPosition = gameObject.transform.position;
+            charPosition.y += 1f;
+            Vector3 charDirection = gameObject.transform.forward;
+            Vector3 dropPosition = charPosition + charDirection * 0.7f;
+
+            drop.transform.position = dropPosition;
+            drop.SendMessage("Drop"); //resets ability to be stored in inventory again
+            //resets invenotory slot
+            InventoryButtons[activeSlot].GetComponentInChildren<Text>().text = "";
+            inventory[activeSlot] = null;
+            SlotSelect(activeSlot);
+        }
+    }
+
+    //Throws active item from inventory on the ground (with force), (similar to drop, currently unused)
+    public void ThrowActive()
+    {
+        if (activeSlot != -1 && inventory[activeSlot] != null)
+        {
+            GameObject drop = inventory[activeSlot];
+            drop.SetActive(true);
+            //chooses position close to player for dropping, then for throwing
+            Vector3 charPosition = gameObject.transform.position;
+            charPosition.y += 1.5f;
+            Vector3 charDirection = gameObject.transform.forward;
+            Vector3 dropPosition = charPosition + charDirection * 1f;
+            Vector3 throwPosition = charPosition + charDirection * 550f;
+
+            drop.transform.position = dropPosition;
+            drop.GetComponent<Rigidbody>().AddForce(throwPosition);
+            drop.SendMessage("Drop"); //resets ability to be stored in inventory again
+            //resets invenotory slot
+            InventoryButtons[activeSlot].GetComponentInChildren<Text>().text = "";
+            inventory[activeSlot] = null;
+            SlotSelect(activeSlot);
         }
     }
 }

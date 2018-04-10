@@ -4,76 +4,75 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerInteract : MonoBehaviour {
-    //CHA1 & CHA2 - Milda Petrikaitė IFF-6/5
-
     public GameObject currentInterObject = null; //current item in range
     public InteractionObject currentInterObjScript = null;
+    public GameObject enemyInRange = null; //current enemy in range
     public Inventory inventory;
     public Text message; //text of message associated with interactions
     Animator anim;
+    string layerName = "ThrownObject";
+    int layerIndex;
+    
 
     private void Start()
     {
+        layerIndex = LayerMask.NameToLayer(layerName);
         anim = GetComponent<Animator>();
     }
 
     private void Update()
     {
         //if there is a current interactable object, interacts with it
-        if (Input.GetButtonDown("Interact") && currentInterObject)
+        if (Input.GetButtonDown("Interact"))
         {
-            //interaction specific for item (checks to see if item is to be stored in inventory and adds it)
-            if (currentInterObjScript is Item)
+            if (inventory.HasActive())
             {
-                if (((Item)currentInterObjScript).inventory && !((Item)currentInterObjScript).isInInventory)
-                {
-                    inventory.AddItem(currentInterObject);
-                    anim.SetTrigger("isPickingUp");
-                }
+                inventory.UseActive(enemyInRange);
             }
-            //interaction specific for openable object
-            else if (currentInterObjScript is OpenableObject)
+            else if (currentInterObject)
             {
-                if (((OpenableObject)currentInterObjScript).isLocked)
+                //interaction specific for item (checks to see if item is to be stored in inventory and adds it)
+                if (currentInterObjScript is Item)
                 {
-                    //checks if specific item is in inventory
-                    if (inventory.FindItem(((OpenableObject)currentInterObjScript).key))
+                    if (((Item)currentInterObjScript).inventory && !((Item)currentInterObjScript).isInInventory)
                     {
-                        //unlocks the object
-                        ((OpenableObject)currentInterObjScript).isLocked = false;
-                        message.text = currentInterObjScript.objectName + " was unlocked";
-                        message.SendMessage("FadeAway");
-                    }
-                    else
-                    {
-                        message.text = currentInterObjScript.objectName + " is locked";
-                        message.SendMessage("FadeAway");
+                        inventory.AddItem(currentInterObject);
+                        anim.SetTrigger("isPickingUp");
+                        currentInterObject.layer = layerIndex;
                     }
                 }
-                //if object can be opened, opens it (or closes)
-                else if (!((OpenableObject)currentInterObjScript).isLocked)
+                //interaction specific for openable object
+                else if (currentInterObjScript is OpenableObject)
                 {
-                    currentInterObject.SendMessage("DoInteraction");
+                    if (((OpenableObject)currentInterObjScript).isLocked)
+                    {
+                        //checks if specific item is in inventory
+                        if (inventory.FindItem(((OpenableObject)currentInterObjScript).key))
+                        {
+                            //unlocks the object
+                            ((OpenableObject)currentInterObjScript).isLocked = false;
+                            message.text = currentInterObjScript.objectName + " was unlocked";
+                            message.SendMessage("FadeAway");
+                        }
+                        else
+                        {
+                            message.text = currentInterObjScript.objectName + " is locked";
+                            message.SendMessage("FadeAway");
+                        }
+                    }
+                    //if object can be opened, opens it (or closes)
+                    else if (!((OpenableObject)currentInterObjScript).isLocked)
+                    {
+                        currentInterObject.SendMessage("DoInteraction");
+                    }
                 }
             }
-
-        }
-        //changes active item to the left one from the current on inventory array
-        if (Input.GetButtonDown("ActiveLeft"))
-        {
-            inventory.SetActiveLeft();
         }
 
-        //changes active item to the right one from the current on inventory array
-        if (Input.GetButtonDown("ActiveRight"))
+        //drops currently active item from inventory
+        if (Input.GetButtonDown("Drop"))
         {
-            inventory.SetActiveRight();
-        }
-
-        //uses currently active item from inventory
-        if (Input.GetButtonDown("UseActiveItem"))
-        {
-            inventory.UseActive();
+            inventory.DropActive();
         }
     }
 
@@ -85,6 +84,12 @@ public class PlayerInteract : MonoBehaviour {
             currentInterObject = other.gameObject;
             currentInterObjScript = currentInterObject.GetComponent<InteractionObject>();
 
+        }
+
+        //notices enemy in range (needed for ability to kill robot)
+        if (other.CompareTag("enemy"))
+        {
+            enemyInRange = other.gameObject;
         }
 
 
@@ -100,14 +105,6 @@ public class PlayerInteract : MonoBehaviour {
                 message.SendMessage("FadeAway");
             }
         }
-        if (other.CompareTag("completed"))
-        {
-                other.gameObject.SetActive(false);
-
-                message.text = "Level completed";
-                message.SendMessage("FadeAway");
-            HealthBarScript.levelCompleted = true;
-        }
     }
     private void OnTriggerExit(Collider other)
     {
@@ -117,6 +114,14 @@ public class PlayerInteract : MonoBehaviour {
             if(other.gameObject == currentInterObject)
             {
                 currentInterObject = null;
+            }
+        }
+
+        if (other.CompareTag("enemy"))
+        {
+            if (other.gameObject == enemyInRange)
+            {
+                enemyInRange = null;
             }
         }
     }

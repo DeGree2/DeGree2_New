@@ -7,68 +7,88 @@ using System.Globalization;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    NavMeshAgent navMeshAgent;
-    public float timeForNewPath;
-    public int attackType;
-    bool inCoroutine;
-    bool searchMode = false;
-    NavMeshPath path;
-    bool validPath;
+    [SerializeField]
+    int pathType;
 
-    [Range(0, 50)]
-    public float searchArea;
+    [SerializeField]
+    string[] WayPoints;
 
-    bool followMode = false;
+    [SerializeField]
+    float speed;
 
+    [SerializeField]
+    int attackType;
+    
     [SerializeField]
     float attackSpeed;
 
     [SerializeField]
     float searchDuration;
 
-
-    bool neutralMode = true;
+    [SerializeField]
+    Inventory playerDamager;
 
     [SerializeField]
-    string[] Points;
+    Transform playerTarget;
 
+    [HideInInspector]
+    public bool damaged;
+
+    int count;
+
+    [HideInInspector]
+    public bool changeLayerToDefault;
+    bool isInvestigating;
+    Vector3 whereFell;
+    int goLookDuration;
+    int investigateDuration;
+    float distFromObj;
+    bool firstInvestig = true;
+
+
+    NavMeshAgent navMeshAgent;
+    int narrow = 0;
+    bool inCoroutine;
+    bool searchMode = false;
+    NavMeshPath path;
     bool searchBegan;
-
-    [SerializeField]
-    float speed;
-
     float searchModeSpeed = 100;
 
-    [SerializeField]
-    int typeOfPath;
+    int firstTime0 = 0;
+    bool first;
+
+    Vector3 target2;
+    Vector3 target3;
+
+
+    bool wasInSearch;
+    bool isAtWall;
+    int timeAtWall = 0;
+
+    int firstCor = 0;
+
+    float searchArea = 50;
+    bool followMode = false;
+    int timeForNewPath = 0;
 
     EnemyVision scriptVision;
 
-    private int current = -1;
-    private Vector3 target;
-    private float[] X = new float[10];
-    private float[] Y = new float[10];
-    private float[] Z = new float[10];
-    private float turnSpeed = 5f;
-    private new Rigidbody rigidbody;
+    int current = -1;
+    Vector3 target;
+    float[] X = new float[10];
+    float[] Y = new float[10];
+    float[] Z = new float[10];
     Animator anim;
-
-    bool modifiedSpeed;
-
+    
     int startedSearching = 0;
-    int startedSearching2 = 0;
+    
+    System.Random ran = new System.Random();
+    int turn;
+    bool turning = false;
+    int turnCount = 0;
+    
 
-
-    private bool isVisible;
-    private bool playerEscaped;
-    private System.Random ran = new System.Random();
-    private int turn;
-    private bool turning = false;
-    private int turnCount = 0;
-
-    public Transform AttackTarget;
-
-    private bool reversePath;
+    bool reversePath;
     
 
     void GetXYZ()
@@ -76,7 +96,7 @@ public class EnemyBehaviour : MonoBehaviour
 
         int j = 0;
 
-        foreach (string point in Points)
+        foreach (string point in WayPoints)
         {
             string[] values = point.Split(';');
 
@@ -104,7 +124,7 @@ public class EnemyBehaviour : MonoBehaviour
         float dist = navMeshAgent.remainingDistance;
 
 
-        if (current == Points.Length)
+        if (current == WayPoints.Length)
         {
             current = 0;
             target = new Vector3(X[current], Y[current], Z[current]);
@@ -123,17 +143,17 @@ public class EnemyBehaviour : MonoBehaviour
 
     Vector3 getSetPosition2()
     {
-        
+
 
         float dist = navMeshAgent.remainingDistance;
 
 
-        if (current == Points.Length)
+        if (current == WayPoints.Length)
         {
             reversePath = true;
             current--;
             target = new Vector3(X[current], Y[current], Z[current]);
-            
+
         }
         else if (dist != Mathf.Infinity && navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete && navMeshAgent.remainingDistance == 0)
         {
@@ -160,7 +180,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     Vector3 Follow()
     {
-        Vector3 pos = AttackTarget.position;
+        Vector3 pos = playerTarget.position;
         target = new Vector3(pos.x, pos.y, pos.z);
 
         return target;
@@ -168,30 +188,20 @@ public class EnemyBehaviour : MonoBehaviour
 
     IEnumerator Walk()
     {
-        inCoroutine = true;
-
-        if (!searchMode)
-            timeForNewPath = 0;
-
-        yield return new WaitForSeconds(timeForNewPath);
+        yield return new WaitForSeconds(0);
         GetNewPath();
-        
+
         inCoroutine = false;
 
     }
 
     void GetNewPath()
     {
-        if (followMode)
-        {
-            target = Follow();
-            navMeshAgent.speed = attackSpeed;
-        }
-        else if (!searchMode)
+        if (!searchMode)
         {
             navMeshAgent.speed = speed;
 
-            switch (typeOfPath)
+            switch (pathType)
             {
                 case 0:
                     target = getSetPosition1();
@@ -200,14 +210,38 @@ public class EnemyBehaviour : MonoBehaviour
                     target = getSetPosition2();
                     break;
             }
-
+            
         }
         else if (searchMode)
-            target = getRandomPosition();
-        
+        {
+            
+            if (!first && timeAtWall > 10)
+            {
+                target = getRandomPosition();
+                timeAtWall = 0;
+            }
+
+            if (timeForNewPath > 10)
+            {
+                first = false;
+            }
+            
+            if (timeForNewPath >= 70)
+            {
+                target = getRandomPosition();
+                timeForNewPath = 0;
+            }
+            timeForNewPath++;
+
+            if (isAtWall)
+                timeAtWall++;
+
+
+        }
+
         navMeshAgent.SetDestination(target);
     }
-    
+
     void Start()
     {
         GetXYZ();
@@ -215,65 +249,212 @@ public class EnemyBehaviour : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         path = new NavMeshPath();
         anim = GetComponent<Animator>();
+
     }
 
 
     void Update()
     {
         scriptVision = GetComponent<EnemyVision>();
-        List<Transform> visible = scriptVision.visibleTargets;
+        List<Transform> visibleT = scriptVision.visibleTargets;
+        List<Transform> visibleO = scriptVision.visibleObjects;
 
-        //neutral
-        if (visible.Count == 0 && !searchMode && !searchBegan)
+
+        if (visibleO.Count != 0)
         {
-            if (!inCoroutine)
-                StartCoroutine(Walk());
-            startedSearching = 0;
-            anim.SetBool("isAttacking", false);
-            anim.SetBool("isLooking", false);
+            whereFell = visibleO[0].position;
+            distFromObj = Vector3.Distance(whereFell, transform.position);
+            gameObject.GetComponent<NavMeshAgent>().isStopped = false;
         }
-        //attack
-        else if (visible.Count != 0)
+
+        float distFromPlayer = Vector3.Distance(playerDamager.transform.position, transform.position);
+
+        if (playerDamager.enemyDamaged && distFromPlayer < 2)
         {
-            anim.SetBool("isAttacking", true);
-            anim.SetBool("isLooking", false);
-            transform.LookAt(AttackTarget);
-            followMode = true;
-            searchBegan = true;
-            if (!inCoroutine)
-                StartCoroutine(Walk());
-            startedSearching = 0;
-            turnCount = 0;
+            damaged = true;
+            playerDamager.enemyDamaged = false;
         }
-        //search
-        else if ((visible.Count == 0) && searchBegan)
+        
+        if (damaged)
         {
-            anim.SetBool("isAttacking", false);
-            anim.SetBool("isLooking", true);
-            searchMode = true;
-            followMode = false;
-            
-            if (turnCount < 210)
+            navMeshAgent.speed = 0;
+
+            if (narrow >= 3 && scriptVision.viewAngle != 0)
             {
-                Rotate();
-                turnCount++;
+                scriptVision.viewAngle = scriptVision.viewAngle-1;
+                narrow = 0;
+            }
+            narrow++;
+            //stand-in-place or death animation                                           //ANIMATION
+
+
+            
+        }
+        else if(visibleT.Count == 0 && visibleO.Count != 0)
+        {
+            changeLayerToDefault = false;
+
+            transform.LookAt(visibleO[0]);
+
+            if (goLookDuration < 50)
+            {
+                navMeshAgent.speed = 0;
+                //stand-in-place animation                                                //ANIMATION
+            }
+            else if (goLookDuration > 50 && distFromObj > 3)
+            {
+                navMeshAgent.speed = speed;
+                navMeshAgent.SetDestination(whereFell);
+            }
+            else if (distFromObj <= 3 && investigateDuration < 200)
+            {
+                navMeshAgent.speed = 0;
+                investigateDuration++;
+                //stand-in-place animation                                                //ANIMATION
+            }
+            else if (investigateDuration == 200)
+            {
+                goLookDuration = 0;
+                investigateDuration = 0;
+                navMeshAgent.speed = speed;
+                changeLayerToDefault = true;
+            }
+
+            goLookDuration++;
+
+        }
+        else
+        {
+            
+
+            if (transform.hasChanged)
+            {
+                isAtWall = false;
+                transform.hasChanged = false;
+
             }
             else
             {
+                isAtWall = true;
+            }
+
+            
+
+            //neutral
+            if (visibleT.Count == 0 && !searchMode && !searchBegan)
+            {
+
+                if (isAtWall)
+                    timeAtWall++;
+
+                target3 = target;
+
                 if (!inCoroutine)
                     StartCoroutine(Walk());
 
 
-                if (startedSearching >= searchDuration)
-                {
-                    searchBegan = false;
-                    searchMode = false;
-                }
-                startedSearching++;
-            }
 
+                if (target == target2 && wasInSearch)
+                {
+                    target = new Vector3(X[current], Y[current], Z[current]);
+                    wasInSearch = false;
+                }
+
+
+                if (target == target3 && timeAtWall >= 20)
+                {
+                    timeAtWall = 0;
+                    navMeshAgent.speed = 0;
+                    transform.LookAt(-target);
+                }
+                
+
+                startedSearching = 0;
+                anim.SetBool("isAttacking", false);
+                anim.SetBool("isLooking", false);
+            }
+            //attack
+            else if (visibleT.Count != 0)
+            {
+
+                gameObject.GetComponent<NavMeshAgent>().isStopped = false;
+                wasInSearch = false;
+                anim.SetBool("isAttacking", true);
+                anim.SetBool("isLooking", false);
+                transform.LookAt(playerTarget);
+                followMode = true;
+                searchBegan = true;
+
+                target = Follow();
+
+                navMeshAgent.SetDestination(target);
+                navMeshAgent.speed = attackSpeed;
+
+                startedSearching = 0;
+                turnCount = 0;
+
+                firstCor = 0;
+                timeAtWall = 0;
+                first = true;
+
+            }
+            //search
+            else if ((visibleT.Count == 0) && searchBegan)
+            {
+                navMeshAgent.speed = attackSpeed;
+                firstTime0 = 0;
+
+               
+                searchMode = true;
+                followMode = false;
+                wasInSearch = true;
+
+
+                if (navMeshAgent.pathStatus == NavMeshPathStatus.PathPartial && firstCor <= 50)
+                {
+                    anim.SetBool("isAttacking", true);
+                    anim.SetBool("isLooking", false);
+                    
+                }
+                else if (firstCor > 50 && turnCount < 210)
+                {
+                    gameObject.GetComponent<NavMeshAgent>().isStopped = true;
+                    anim.SetBool("isAttacking", false);
+                    anim.SetBool("isLooking", true);
+                    Rotate();
+                    turnCount++;
+                }
+                else if (firstCor < 50)
+                {
+                    anim.SetBool("isAttacking", true);
+                    anim.SetBool("isLooking", false);
+                }
+                else
+                {
+                    gameObject.GetComponent<NavMeshAgent>().isStopped = false;
+                    anim.SetBool("isAttacking", false);
+                    anim.SetBool("isLooking", false);
+                    if (!inCoroutine)
+                        StartCoroutine(Walk());
+
+
+                    if (startedSearching >= searchDuration)
+                    {
+                        searchBegan = false;
+                        searchMode = false;
+
+                    }
+                    startedSearching++;
+                }
+
+                firstCor++;
+
+                target2 = target;
+
+            }
         }
     }
+    
 
         public void Rotate()
         {
@@ -297,6 +478,8 @@ public class EnemyBehaviour : MonoBehaviour
             }
             transform.rotation = Quaternion.Euler(angles);
         }
+
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
@@ -305,4 +488,5 @@ public class EnemyBehaviour : MonoBehaviour
             }
         }
 
-}
+    }
+
