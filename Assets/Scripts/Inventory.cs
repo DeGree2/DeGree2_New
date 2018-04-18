@@ -107,6 +107,7 @@ public class Inventory : MonoBehaviour {
                     inventory[activeSlot].SendMessage("Use");
                     Debug.Log("Killed enemy " + enemyInRange.name); //enemyInRange.sendMessage("Die"); ?
                     enemyDamaged = true;    //no touching pls :)
+                    FindObjectOfType<AudioManager>().Play("EnemyDying");
                 }
                 else
                 {

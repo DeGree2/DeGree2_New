@@ -14,11 +14,13 @@ public class Item : InteractionObject {
         //picked up and put in inventory
         gameObject.SetActive(false);
         isInInventory = true;
+        FindObjectOfType<AudioManager>().Play("TakeItem");
     }
 
     public void Drop()
     {
         isInInventory = false;
+        FindObjectOfType<AudioManager>().Play("DropItem");
     }
 
     public void Use()
@@ -32,6 +34,8 @@ public class Item : InteractionObject {
             if (usage == 0)
                 gameObject.SetActive(false);
             message.text = objectName + " used";
+            if(!weapon)
+                FindObjectOfType<AudioManager>().Play("UseItem");
             message.SendMessage("FadeAway");
         }
         else if (usage == -1)
