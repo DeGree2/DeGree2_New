@@ -18,15 +18,18 @@ public class MoveScenes : MonoBehaviour {
     {
         if (other.CompareTag("Player"))
         {
+            FindObjectOfType<AudioManager>().Play("LevelCompleted");
             change = true;
         }
     }
 
     IEnumerator Timer()
     {
-       // HealthBarScript.levelCompleted = true;
+         HealthBarScript.levelCompleted = true;
+        yield return new WaitForSeconds(1);
         yield return new WaitForSeconds(delayTime);
         SceneManager.LoadScene(loadLevel);
+        HealthBarScript.levelCompleted = false;
         StopCoroutine("Timer");
     }
 }
