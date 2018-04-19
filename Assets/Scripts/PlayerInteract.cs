@@ -51,7 +51,7 @@ public class PlayerInteract : MonoBehaviour {
                         {
                             //unlocks the object
                             ((OpenableObject)currentInterObjScript).isLocked = false;
-                            message.text = currentInterObjScript.objectName + " was unlocked";
+                            message.text = currentInterObjScript.objectName + " unlocked with " + ((OpenableObject)currentInterObjScript).key.GetComponent<Item>().objectName.ToLower();
                             message.SendMessage("FadeAway");
                         }
                         else
@@ -64,6 +64,34 @@ public class PlayerInteract : MonoBehaviour {
                     else if (!((OpenableObject)currentInterObjScript).isLocked)
                     {
                         currentInterObject.SendMessage("DoInteraction");
+                    }
+                }
+                else if (currentInterObjScript is EventObject)
+                {
+                    //checks if object can be interacted with (type = 0 means object is uninteractable)
+                    if(((EventObject)currentInterObjScript).type != 0)
+                    {
+                        if (((EventObject)currentInterObjScript).isLocked)
+                        {
+                            //checks if specific item is in inventory
+                            if (inventory.FindItem(((EventObject)currentInterObjScript).key))
+                            {
+                                //unlocks the object
+                                ((EventObject)currentInterObjScript).isLocked = false;
+                                message.text = "You can now use " + currentInterObjScript.objectName.ToLower();
+                                message.SendMessage("FadeAway");
+                            }
+                            else
+                            {
+                                message.text = "Some item needed to use " + currentInterObjScript.objectName.ToLower();
+                                message.SendMessage("FadeAway");
+                            }
+                        }
+                        //if object can be interacted with, interacts
+                        else if (!((EventObject)currentInterObjScript).isLocked)
+                        {
+                            currentInterObject.SendMessage("DoInteraction");
+                        }
                     }
                 }
             }
