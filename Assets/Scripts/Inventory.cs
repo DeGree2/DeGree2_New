@@ -65,7 +65,14 @@ public class Inventory : MonoBehaviour {
                 //add item
                 inventory[i] = item;
                 //update UI
-                InventoryButtons[i].GetComponentInChildren<Text>().text = "+";
+                Image[] images = InventoryButtons[i].GetComponentsInChildren<Image>();
+                foreach(Image im in images)
+                {
+                    if(im.gameObject.GetInstanceID() != InventoryButtons[i].GetComponentInChildren<Image>().gameObject.GetInstanceID())
+                    {
+                        im.sprite = (item.GetComponent<Item>()).inventoryImage;
+                    }
+                }
                 item.SendMessage("UpdateUI");
                 itemAdded = true;
                 //do something with the object
@@ -122,7 +129,14 @@ public class Inventory : MonoBehaviour {
             if (!inventory[activeSlot].activeInHierarchy)
             {
                 Debug.Log(inventory[activeSlot].name + " was used and reached its usability limit");
-                InventoryButtons[activeSlot].GetComponentInChildren<Text>().text = "";
+                Image[] images = InventoryButtons[activeSlot].GetComponentsInChildren<Image>();
+                foreach (Image im in images)
+                {
+                    if (im.gameObject.GetInstanceID() != InventoryButtons[activeSlot].GetComponentInChildren<Image>().gameObject.GetInstanceID())
+                    {
+                        im.sprite = null;
+                    }
+                }
                 inventory[activeSlot] = null;
             }
             else
@@ -151,7 +165,14 @@ public class Inventory : MonoBehaviour {
             drop.transform.position = dropPosition;
             drop.SendMessage("Drop"); //resets ability to be stored in inventory again
             //resets invenotory slot
-            InventoryButtons[activeSlot].GetComponentInChildren<Text>().text = "";
+            Image[] images = InventoryButtons[activeSlot].GetComponentsInChildren<Image>();
+            foreach (Image im in images)
+            {
+                if (im.gameObject.GetInstanceID() != InventoryButtons[activeSlot].GetComponentInChildren<Image>().gameObject.GetInstanceID())
+                {
+                    im.sprite = null;
+                }
+            }
             inventory[activeSlot] = null;
             SlotSelect(activeSlot);
         }
@@ -175,7 +196,14 @@ public class Inventory : MonoBehaviour {
             drop.GetComponent<Rigidbody>().AddForce(throwPosition);
             drop.SendMessage("Drop"); //resets ability to be stored in inventory again
             //resets invenotory slot
-            InventoryButtons[activeSlot].GetComponentInChildren<Text>().text = "";
+            Image[] images = InventoryButtons[activeSlot].GetComponentsInChildren<Image>();
+            foreach (Image im in images)
+            {
+                if (im.gameObject.GetInstanceID() != InventoryButtons[activeSlot].GetComponentInChildren<Image>().gameObject.GetInstanceID())
+                {
+                    im.sprite = null;
+                }
+            }
             inventory[activeSlot] = null;
             SlotSelect(activeSlot);
         }
