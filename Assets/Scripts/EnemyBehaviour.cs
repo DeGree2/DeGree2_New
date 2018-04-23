@@ -17,10 +17,10 @@ public class EnemyBehaviour : MonoBehaviour
     float speed;
 
     [SerializeField]
-    int attackType;
-    
-    [SerializeField]
     float attackSpeed;
+
+    [SerializeField]
+    public bool withLaser;
 
     [SerializeField]
     float searchDuration;
@@ -35,6 +35,13 @@ public class EnemyBehaviour : MonoBehaviour
     public bool damaged;
 
     int count;
+    Vector3 curPosition;
+
+    int damageRange;
+    bool doDamage;
+    float damageSpeed = 2.0f;
+
+    bool notFirst = false;
 
     [HideInInspector]
     public bool changeLayerToDefault;
@@ -45,6 +52,10 @@ public class EnemyBehaviour : MonoBehaviour
     float distFromObj;
     bool firstInvestig = true;
 
+    float distFromPlayer;
+    float dist;
+
+    int collideAgain;
 
     NavMeshAgent navMeshAgent;
     int narrow = 0;
@@ -54,12 +65,21 @@ public class EnemyBehaviour : MonoBehaviour
     bool searchBegan;
     float searchModeSpeed = 100;
 
+    List<Transform> visibleT;
+
+    bool beginLaser;
+    bool endLaser;
+    int endL;
+    [HideInInspector]
+    public bool useLaser;
+
     int firstTime0 = 0;
     bool first;
 
     Vector3 target2;
     Vector3 target3;
 
+    private float timestamp = 0.0f;
 
     bool wasInSearch;
     bool isAtWall;
@@ -79,17 +99,17 @@ public class EnemyBehaviour : MonoBehaviour
     float[] Y = new float[10];
     float[] Z = new float[10];
     Animator anim;
-    
+
     int startedSearching = 0;
-    
+
     System.Random ran = new System.Random();
     int turn;
     bool turning = false;
     int turnCount = 0;
-    
+
 
     bool reversePath;
-    
+
 
     void GetXYZ()
     {
@@ -200,6 +220,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (!searchMode)
         {
             navMeshAgent.speed = speed;
+            //navMeshAgent.speed = 0;
 
             switch (pathType)
             {
@@ -210,11 +231,11 @@ public class EnemyBehaviour : MonoBehaviour
                     target = getSetPosition2();
                     break;
             }
-            
+
         }
         else if (searchMode)
         {
-            
+
             if (!first && timeAtWall > 10)
             {
                 target = getRandomPosition();
@@ -225,7 +246,7 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 first = false;
             }
-            
+
             if (timeForNewPath >= 70)
             {
                 target = getRandomPosition();
@@ -249,15 +270,19 @@ public class EnemyBehaviour : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         path = new NavMeshPath();
         anim = GetComponent<Animator>();
-
+        damageRange = playerDamager.damageRange;
     }
 
 
     void Update()
     {
         scriptVision = GetComponent<EnemyVision>();
-        List<Transform> visibleT = scriptVision.visibleTargets;
+        visibleT = scriptVision.visibleTargets;
         List<Transform> visibleO = scriptVision.visibleObjects;
+
+
+        dist = Vector3.Distance(playerTarget.position, transform.position);
+
 
 
         if (visibleO.Count != 0)
@@ -267,30 +292,44 @@ public class EnemyBehaviour : MonoBehaviour
             gameObject.GetComponent<NavMeshAgent>().isStopped = false;
         }
 
-        float distFromPlayer = Vector3.Distance(playerDamager.transform.position, transform.position);
+        distFromPlayer = Vector3.Distance(playerDamager.transform.position, transform.position);
 
-        if (playerDamager.enemyDamaged && distFromPlayer < 2)
+
+        if (transform.tag == "enemy" && playerDamager.enemyInRange && distFromPlayer <= damageRange)
         {
             damaged = true;
-            playerDamager.enemyDamaged = false;
+            transform.tag = "Untagged";
+
+
+            if (playerDamager.damageOnly1)
+                playerDamager.enemyInRange = false;
+
+
         }
-        
-        if (damaged)
+
+
+        if ((transform.tag == "Untagged") && damaged)
         {
+
             navMeshAgent.speed = 0;
 
             if (narrow >= 3 && scriptVision.viewAngle != 0)
             {
-                scriptVision.viewAngle = scriptVision.viewAngle-1;
+                scriptVision.viewAngle = scriptVision.viewAngle - 1;
                 narrow = 0;
             }
             narrow++;
             //stand-in-place or death animation                                           //ANIMATION
 
 
-            
+            if (withLaser && endLaser)
+            {
+                FindObjectOfType<AudioManager>().Play("Laser2");
+                endLaser = false;
+            }
+
         }
-        else if(visibleT.Count == 0 && visibleO.Count != 0)
+        else if (visibleT.Count == 0 && visibleO.Count != 0)
         {
             changeLayerToDefault = false;
 
@@ -325,7 +364,7 @@ public class EnemyBehaviour : MonoBehaviour
         }
         else
         {
-            
+
 
             if (transform.hasChanged)
             {
@@ -338,7 +377,7 @@ public class EnemyBehaviour : MonoBehaviour
                 isAtWall = true;
             }
 
-            
+
 
             //neutral
             if (visibleT.Count == 0 && !searchMode && !searchBegan)
@@ -367,28 +406,24 @@ public class EnemyBehaviour : MonoBehaviour
                     navMeshAgent.speed = 0;
                     transform.LookAt(-target);
                 }
-                
+
 
                 startedSearching = 0;
                 anim.SetBool("isAttacking", false);
                 anim.SetBool("isLooking", false);
+
+                beginLaser = true;
             }
             //attack
             else if (visibleT.Count != 0)
             {
-
                 gameObject.GetComponent<NavMeshAgent>().isStopped = false;
                 wasInSearch = false;
-                anim.SetBool("isAttacking", true);
-                anim.SetBool("isLooking", false);
                 transform.LookAt(playerTarget);
                 followMode = true;
                 searchBegan = true;
-
                 target = Follow();
-
                 navMeshAgent.SetDestination(target);
-                navMeshAgent.speed = attackSpeed;
 
                 startedSearching = 0;
                 turnCount = 0;
@@ -397,24 +432,77 @@ public class EnemyBehaviour : MonoBehaviour
                 timeAtWall = 0;
                 first = true;
 
+                if (withLaser)
+                {
+                    if (beginLaser)
+                    {
+                        useLaser = true;
+                        FindObjectOfType<AudioManager>().Play("Laser1");
+                        beginLaser = false;
+                        endLaser = true;
+                        endL = 0;
+                    }
+
+                    anim.SetBool("isAttacking", false);
+                    anim.SetBool("isLooking", false);
+                    navMeshAgent.speed = speed;
+                    InvokeRepeating("Damage", 0, 0.5f);
+
+                    if (dist <= 5)
+                    {
+                        navMeshAgent.speed = 0;
+                    }
+                }
+                else
+                {
+                    anim.SetBool("isAttacking", true);
+                    anim.SetBool("isLooking", false);
+                    navMeshAgent.speed = attackSpeed;
+
+                    if (dist <= 2 && doDamage)
+                    {
+                        navMeshAgent.speed = 0;
+                        InvokeRepeating("Damage", 0, 0.5f);
+                    }
+                    else CancelInvoke("Damage");
+
+                }
+
+
+
             }
             //search
             else if ((visibleT.Count == 0) && searchBegan)
             {
                 navMeshAgent.speed = attackSpeed;
                 firstTime0 = 0;
+                CancelInvoke("Damage");
 
-               
+
+                if (withLaser && endLaser)
+                {
+                    FindObjectOfType<AudioManager>().Play("Laser2");
+                    endLaser = false;
+                }
+
+
+                if (withLaser && endL >= 65)
+                {
+                    useLaser = false;
+                }
+                else endL++;
+
+
                 searchMode = true;
                 followMode = false;
                 wasInSearch = true;
-
+                beginLaser = true;
 
                 if (navMeshAgent.pathStatus == NavMeshPathStatus.PathPartial && firstCor <= 50)
                 {
                     anim.SetBool("isAttacking", true);
                     anim.SetBool("isLooking", false);
-                    
+
                 }
                 else if (firstCor > 50 && turnCount < 210)
                 {
@@ -454,39 +542,52 @@ public class EnemyBehaviour : MonoBehaviour
             }
         }
     }
-    
 
-        public void Rotate()
+
+    public void Rotate()
+    {
+        if (!turning)
         {
-            if (!turning)
-            {
-                turn = ran.Next(0, 2);
-                turning = true;
-            }
-            Vector3 angles;
-            angles = transform.rotation.eulerAngles;
-            switch (turn)
-            {
-
-                case 0:
-                    angles.y -= Time.deltaTime * searchModeSpeed;
-
-                    break;
-                case 1:
-                    angles.y += Time.deltaTime * searchModeSpeed;
-                    break;
-            }
-            transform.rotation = Quaternion.Euler(angles);
+            turn = ran.Next(0, 2);
+            turning = true;
         }
-
-
-        private void OnTriggerEnter(Collider other)
+        Vector3 angles;
+        angles = transform.rotation.eulerAngles;
+        switch (turn)
         {
-            if (other.CompareTag("Player"))
+
+            case 0:
+                angles.y -= Time.deltaTime * searchModeSpeed;
+
+                break;
+            case 1:
+                angles.y += Time.deltaTime * searchModeSpeed;
+                break;
+        }
+        transform.rotation = Quaternion.Euler(angles);
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            doDamage = true;
+        }
+        else doDamage = false;
+    }
+
+    private void Damage()
+    {
+        if (!damaged && HealthBarScript.health > 0)
+        {
+            if (Time.time >= timestamp)
             {
                 HealthBarScript.Damage();
+                timestamp = Time.time + damageSpeed;
             }
         }
 
     }
 
+}
