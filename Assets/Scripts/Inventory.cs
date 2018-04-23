@@ -16,6 +16,7 @@ public class Inventory : MonoBehaviour {
     RaycastHit hit;
     public bool damageOnly1;
     public int damageRange;
+    bool inRange;
 
     public void Start()
     {
@@ -36,13 +37,31 @@ public class Inventory : MonoBehaviour {
         foreach (GameObject enemy in enemies)
         {
             if (Vector3.Distance(enemy.transform.position, transform.position) <= damageRange)
+            {
                 countInRange++;
+            }
 
         }
 
         if (countInRange == 0)
         {
-            enemyInRange = false;
+            inRange = false;
+        }
+
+        
+        foreach (GameObject enemy in enemies)
+        {
+            if (Physics.Linecast(transform.position, enemy.transform.position, out hit))
+            {
+                if (hit.transform.tag == "enemy")
+                {
+                    if (Vector3.Distance(enemy.transform.position, transform.position) <= damageRange)
+                    {
+                        inRange = true;
+                    }
+                }
+            }
+
         }
     }
 
@@ -136,29 +155,16 @@ public class Inventory : MonoBehaviour {
             Item temp = inventory[activeSlot].GetComponent<Item>();
             if (temp.weapon) //if item is weapon, using it destroys enemy
             {
-                foreach (GameObject enemy in enemies)
+                if (inRange)
                 {
-                    if (Physics.Linecast(transform.position, enemy.transform.position, out hit))
-                    {
-                        if (hit.transform.tag == "enemy")
-                        {
-                            if (Vector3.Distance(enemy.transform.position, transform.position) <= damageRange)
-                            {
-                                enemyInRange = true;
-                            }
-                        }
-                    }
-
-                }
-
-                if (enemyInRange)
-                {
+                    enemyInRange = true;
                     inventory[activeSlot].SendMessage("Use");
                     Debug.Log("Killed enemy"); //enemyInRange.sendMessage("Die"); ?
                     FindObjectOfType<AudioManager>().Play("EnemyDying");
                 }
                 else
                 {
+                    enemyInRange = false;
                     message.text = "No enemy in range!";
                     message.SendMessage("FadeAway");
                 }
