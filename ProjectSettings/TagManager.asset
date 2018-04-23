@@ -8,6 +8,9 @@ TagManager:
   - bonusHealth
   - completed
   - enemy
+  - SF_Door
+  - vision
+  - top_point
   layers:
   - Default
   - TransparentFX

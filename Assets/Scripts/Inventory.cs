@@ -7,7 +7,15 @@ public class Inventory : MonoBehaviour {
     public Button[] InventoryButtons = new Button[10]; //array for display
     public int activeSlot = -1; //active item slot, -1 means not selected
     public Text message; //text of message associated with inventory
+
+    [HideInInspector]
     public bool enemyDamaged;  //vital for enemyBehavior
+    [HideInInspector]
+    public bool enemyInRange;  //vital for enemyBehavior
+    GameObject[] enemies;
+    RaycastHit hit;
+    public bool damageOnly1;
+    public int damageRange;
 
     public void Start()
     {
@@ -15,6 +23,26 @@ public class Inventory : MonoBehaviour {
         for(int i = 0; i < 10; i++)
         {
             inventory[i] = null;
+        }
+    }
+
+    public void Update()
+    {
+        enemies = null;
+        enemies = GameObject.FindGameObjectsWithTag("enemy");
+
+        int countInRange = 0;
+
+        foreach (GameObject enemy in enemies)
+        {
+            if (Vector3.Distance(enemy.transform.position, transform.position) <= damageRange)
+                countInRange++;
+
+        }
+
+        if (countInRange == 0)
+        {
+            enemyInRange = false;
         }
     }
 
@@ -100,7 +128,7 @@ public class Inventory : MonoBehaviour {
     }
 
     //decreases usability of item
-    public void UseActive(GameObject enemyInRange)
+    public void UseActive()
     {
         if(activeSlot != -1 && inventory[activeSlot] != null)
         {
@@ -108,12 +136,25 @@ public class Inventory : MonoBehaviour {
             Item temp = inventory[activeSlot].GetComponent<Item>();
             if (temp.weapon) //if item is weapon, using it destroys enemy
             {
-                enemyDamaged = false;   //no touching pls :)
+                foreach (GameObject enemy in enemies)
+                {
+                    if (Physics.Linecast(transform.position, enemy.transform.position, out hit))
+                    {
+                        if (hit.transform.tag == "enemy")
+                        {
+                            if (Vector3.Distance(enemy.transform.position, transform.position) <= damageRange)
+                            {
+                                enemyInRange = true;
+                            }
+                        }
+                    }
+
+                }
+
                 if (enemyInRange)
                 {
                     inventory[activeSlot].SendMessage("Use");
-                    Debug.Log("Killed enemy " + enemyInRange.name); //enemyInRange.sendMessage("Die"); ?
-                    enemyDamaged = true;    //no touching pls :)
+                    Debug.Log("Killed enemy"); //enemyInRange.sendMessage("Die"); ?
                     FindObjectOfType<AudioManager>().Play("EnemyDying");
                 }
                 else

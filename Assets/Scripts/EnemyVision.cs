@@ -3,20 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class EnemyVision : MonoBehaviour {
+public class EnemyVision : MonoBehaviour
+{
 
     [Range(0, 20)]
     public float viewRadius;
     [Range(0, 360)]
     public float viewAngle;
 
-    public float visionDelay;
-
 
     public LayerMask targetMask;
     public LayerMask obstacleMask;
     public LayerMask objectMask;
-   // public string objectTag;
+
     string layerName = "ThrownObject";
 
     [HideInInspector]
@@ -24,7 +23,7 @@ public class EnemyVision : MonoBehaviour {
 
     [HideInInspector]
     public List<Transform> visibleObjects = new List<Transform>();
-    //public bool isVisible;
+
     [HideInInspector]
     public GameObject interObj;
 
@@ -38,18 +37,45 @@ public class EnemyVision : MonoBehaviour {
     Mesh viewMesh;
     GameObject[] objs;
 
-    
     bool changeLayer;
+    EnemyLaser laser;
+    Vector3 pos;
+    GameObject vis;
 
+    float positionY;
+    Transform top_point;
+    [HideInInspector]
+    public Vector3 position;
 
-    void Start()
+    float height = 0.2f;
+    
+
+        void Start()
     {
+
+        Transform[] children = GetComponentsInChildren<Transform>();
+        foreach (Transform child in children)
+        {
+            if (child.name == "mixamorig:HeadTop_End")
+                top_point = child;
+            
+        }
+
+        GameObject[] vision = GameObject.FindGameObjectsWithTag("vision");
+
+
+        foreach (GameObject v in vision)
+            if (transform.Equals(v.transform.parent))
+                vis = v;
+
+
+
         viewMesh = new Mesh();
         viewMesh.name = "View Mesh";
         viewMeshFilter.mesh = viewMesh;
-        StartCoroutine("FindTargetsWithDelay", visionDelay);
+        StartCoroutine("FindTargetsWithDelay", 0);
     }
-    
+
 
     IEnumerator FindTargetsWithDelay(float delay)
     {
@@ -65,7 +91,19 @@ public class EnemyVision : MonoBehaviour {
         behavior = GetComponent<EnemyBehaviour>();
         changeLayer = behavior.changeLayerToDefault;
 
-        DrawFieldOfView();
+        position = new Vector3(top_point.transform.position.x, top_point.transform.position.y - height, top_point.transform.position.z);
+
+
+        if (behavior.withLaser && behavior.useLaser)
+        {
+            viewMeshFilter.mesh = null;
+        }
+        else
+        {
+            vis.transform.position = position;
+            viewMeshFilter.mesh = viewMesh;
+            DrawFieldOfView();
+        }
     }
 
     void FindVisibleTargets()
@@ -75,7 +113,7 @@ public class EnemyVision : MonoBehaviour {
 
         Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
         Collider[] objectsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, objectMask);
-        
+
 
         for (int i = 0; i < targetsInViewRadius.Length; i++)
         {
@@ -88,7 +126,7 @@ public class EnemyVision : MonoBehaviour {
                 if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
                 {
                     visibleTargets.Add(target);
-                    
+
                 }
             }
         }
@@ -159,7 +197,7 @@ public class EnemyVision : MonoBehaviour {
 
             if (i < vertexCount - 2)
             {
-                 
+
                 triangles[i * 3] = 0;
                 triangles[i * 3 + 1] = i + 1;
                 triangles[i * 3 + 2] = i + 2;
@@ -172,7 +210,7 @@ public class EnemyVision : MonoBehaviour {
         viewMesh.RecalculateNormals();
     }
 
-    EdgeInfo FindEdge (ViewCastInfo minVewCast, ViewCastInfo maxViewCast)
+    EdgeInfo FindEdge(ViewCastInfo minVewCast, ViewCastInfo maxViewCast)
     {
         float minAngle = minVewCast.angle;
         float maxAngle = maxViewCast.angle;
@@ -200,7 +238,7 @@ public class EnemyVision : MonoBehaviour {
         return new EdgeInfo(minPoint, maxPoint);
     }
 
-    ViewCastInfo ViewCast (float globalAngle)
+    ViewCastInfo ViewCast(float globalAngle)
     {
         Vector3 dir = DirFromAngle(globalAngle, true);
         RaycastHit hit;
@@ -218,7 +256,8 @@ public class EnemyVision : MonoBehaviour {
     public Vector3 DirFromAngle(float angleInDegrees, bool AngleIsGlobal)
     {
         if (!AngleIsGlobal)
-        { angleInDegrees += transform.eulerAngles.y;
+        {
+            angleInDegrees += transform.eulerAngles.y;
         }
         return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
     }

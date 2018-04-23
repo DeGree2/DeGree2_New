@@ -27,7 +27,7 @@ public class PlayerInteract : MonoBehaviour {
         {
             if (inventory.HasActive())
             {
-                inventory.UseActive(enemyInRange);
+                inventory.UseActive();
             }
             else if (currentInterObject)
             {
@@ -114,12 +114,6 @@ public class PlayerInteract : MonoBehaviour {
 
         }
 
-        //notices enemy in range (needed for ability to kill robot)
-        if (other.CompareTag("enemy"))
-        {
-            enemyInRange = other.gameObject;
-        }
-
 
         //Živilė. Player uses health bonus.
         if (other.CompareTag("bonusHealth"))
@@ -142,14 +136,6 @@ public class PlayerInteract : MonoBehaviour {
             if(other.gameObject == currentInterObject)
             {
                 currentInterObject = null;
-            }
-        }
-
-        if (other.CompareTag("enemy"))
-        {
-            if (other.gameObject == enemyInRange)
-            {
-                enemyInRange = null;
             }
         }
     }
