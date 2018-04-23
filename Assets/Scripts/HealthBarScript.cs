@@ -30,6 +30,7 @@ public class HealthBarScript : MonoBehaviour {
         if(health<=0) //If health is 0, game is over
         {
             gameOverPanel.SetActive(true);
+			Time.timeScale = 0;
         }
 	}
     public static void Damage()
@@ -38,8 +39,8 @@ public class HealthBarScript : MonoBehaviour {
         health -= 10f;
         if(health>0)
             FindObjectOfType<AudioManager>().Play("LoseHealth");
-        if(health<=0)
-            FindObjectOfType<AudioManager>().Play("GameOver");
+		if (health <= 0) 
+			FindObjectOfType<AudioManager> ().Play ("GameOver");
     }
     public static void TakeBonus()
     {
