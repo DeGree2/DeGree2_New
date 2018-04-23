@@ -320,7 +320,7 @@ public class EnemyBehaviour : MonoBehaviour
             }
             narrow++;
             //stand-in-place or death animation                                           //ANIMATION
-
+			anim.SetTrigger("isDead");
 
             if (withLaser && endLaser)
             {
