@@ -30,19 +30,27 @@ public class HealthBarScript : MonoBehaviour {
         if(health<=0) //If health is 0, game is over
         {
             gameOverPanel.SetActive(true);
+			Time.timeScale = 0;
         }
 	}
     public static void Damage()
     {
         //If damage is made, health decreases by 10
         health -= 10f;
+        if(health>0)
+            FindObjectOfType<AudioManager>().Play("LoseHealth");
+		if (health <= 0) 
+			FindObjectOfType<AudioManager> ().Play ("GameOver");
     }
     public static void TakeBonus()
     {
         //If bonus is taken, health increases by 10
-        health += 10f;
-        if (health > 100f) //Health can not go over max
-            health = 100f;
+        if (health < 100f) //Health can not go over max
+        {
+            health += 10f;
+            FindObjectOfType<AudioManager>().Play("TakeItem");
+        }
+            
     }
     public static void AddHP(float amount)
     {

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Item : InteractionObject {
     public bool inventory = true; //if true, can be stored in inventory
@@ -8,17 +9,20 @@ public class Item : InteractionObject {
     public int usage = 1; //how many times item can be used, -1 for quest items
     public float hp = 0f; //adds certain amount of HP when used
     public bool weapon = false; //if true, item can be used to kill enemies
+    public Sprite inventoryImage; //image displayed for item in inventory slot
 
     public override void DoInteraction()
     {
         //picked up and put in inventory
         gameObject.SetActive(false);
         isInInventory = true;
+        FindObjectOfType<AudioManager>().Play("TakeItem");
     }
 
     public void Drop()
     {
         isInInventory = false;
+        FindObjectOfType<AudioManager>().Play("DropItem");
     }
 
     public void Use()
@@ -32,6 +36,8 @@ public class Item : InteractionObject {
             if (usage == 0)
                 gameObject.SetActive(false);
             message.text = objectName + " used";
+            if(!weapon)
+                FindObjectOfType<AudioManager>().Play("UseItem");
             message.SendMessage("FadeAway");
         }
         else if (usage == -1)

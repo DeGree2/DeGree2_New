@@ -7,7 +7,16 @@ public class Inventory : MonoBehaviour {
     public Button[] InventoryButtons = new Button[10]; //array for display
     public int activeSlot = -1; //active item slot, -1 means not selected
     public Text message; //text of message associated with inventory
+
+    [HideInInspector]
     public bool enemyDamaged;  //vital for enemyBehavior
+    [HideInInspector]
+    public bool enemyInRange;  //vital for enemyBehavior
+    GameObject[] enemies;
+    RaycastHit hit;
+    public bool damageOnly1;
+    public int damageRange;
+    bool inRange;
 
     public void Start()
     {
@@ -15,6 +24,44 @@ public class Inventory : MonoBehaviour {
         for(int i = 0; i < 10; i++)
         {
             inventory[i] = null;
+        }
+    }
+
+    public void Update()
+    {
+        enemies = null;
+        enemies = GameObject.FindGameObjectsWithTag("enemy");
+
+        int countInRange = 0;
+
+        foreach (GameObject enemy in enemies)
+        {
+            if (Vector3.Distance(enemy.transform.position, transform.position) <= damageRange)
+            {
+                countInRange++;
+            }
+
+        }
+
+        if (countInRange == 0)
+        {
+            inRange = false;
+        }
+
+        
+        foreach (GameObject enemy in enemies)
+        {
+            if (Physics.Linecast(transform.position, enemy.transform.position, out hit))
+            {
+                if (hit.transform.tag == "enemy")
+                {
+                    if (Vector3.Distance(enemy.transform.position, transform.position) <= damageRange)
+                    {
+                        inRange = true;
+                    }
+                }
+            }
+
         }
     }
 
@@ -65,7 +112,14 @@ public class Inventory : MonoBehaviour {
                 //add item
                 inventory[i] = item;
                 //update UI
-                InventoryButtons[i].GetComponentInChildren<Text>().text = "+";
+                Image[] images = InventoryButtons[i].GetComponentsInChildren<Image>();
+                foreach(Image im in images)
+                {
+                    if(im.gameObject.GetInstanceID() != InventoryButtons[i].GetComponentInChildren<Image>().gameObject.GetInstanceID())
+                    {
+                        im.sprite = (item.GetComponent<Item>()).inventoryImage;
+                    }
+                }
                 item.SendMessage("UpdateUI");
                 itemAdded = true;
                 //do something with the object
@@ -93,7 +147,7 @@ public class Inventory : MonoBehaviour {
     }
 
     //decreases usability of item
-    public void UseActive(GameObject enemyInRange)
+    public void UseActive()
     {
         if(activeSlot != -1 && inventory[activeSlot] != null)
         {
@@ -101,15 +155,16 @@ public class Inventory : MonoBehaviour {
             Item temp = inventory[activeSlot].GetComponent<Item>();
             if (temp.weapon) //if item is weapon, using it destroys enemy
             {
-                enemyDamaged = false;   //no touching pls :)
-                if (enemyInRange)
+                if (inRange)
                 {
+                    enemyInRange = true;
                     inventory[activeSlot].SendMessage("Use");
-                    Debug.Log("Killed enemy " + enemyInRange.name); //enemyInRange.sendMessage("Die"); ?
-                    enemyDamaged = true;    //no touching pls :)
+                    Debug.Log("Killed enemy"); //enemyInRange.sendMessage("Die"); ?
+                    FindObjectOfType<AudioManager>().Play("EnemyDying");
                 }
                 else
                 {
+                    enemyInRange = false;
                     message.text = "No enemy in range!";
                     message.SendMessage("FadeAway");
                 }
@@ -121,7 +176,14 @@ public class Inventory : MonoBehaviour {
             if (!inventory[activeSlot].activeInHierarchy)
             {
                 Debug.Log(inventory[activeSlot].name + " was used and reached its usability limit");
-                InventoryButtons[activeSlot].GetComponentInChildren<Text>().text = "";
+                Image[] images = InventoryButtons[activeSlot].GetComponentsInChildren<Image>();
+                foreach (Image im in images)
+                {
+                    if (im.gameObject.GetInstanceID() != InventoryButtons[activeSlot].GetComponentInChildren<Image>().gameObject.GetInstanceID())
+                    {
+                        im.sprite = null;
+                    }
+                }
                 inventory[activeSlot] = null;
             }
             else
@@ -150,7 +212,14 @@ public class Inventory : MonoBehaviour {
             drop.transform.position = dropPosition;
             drop.SendMessage("Drop"); //resets ability to be stored in inventory again
             //resets invenotory slot
-            InventoryButtons[activeSlot].GetComponentInChildren<Text>().text = "";
+            Image[] images = InventoryButtons[activeSlot].GetComponentsInChildren<Image>();
+            foreach (Image im in images)
+            {
+                if (im.gameObject.GetInstanceID() != InventoryButtons[activeSlot].GetComponentInChildren<Image>().gameObject.GetInstanceID())
+                {
+                    im.sprite = null;
+                }
+            }
             inventory[activeSlot] = null;
             SlotSelect(activeSlot);
         }
@@ -174,7 +243,14 @@ public class Inventory : MonoBehaviour {
             drop.GetComponent<Rigidbody>().AddForce(throwPosition);
             drop.SendMessage("Drop"); //resets ability to be stored in inventory again
             //resets invenotory slot
-            InventoryButtons[activeSlot].GetComponentInChildren<Text>().text = "";
+            Image[] images = InventoryButtons[activeSlot].GetComponentsInChildren<Image>();
+            foreach (Image im in images)
+            {
+                if (im.gameObject.GetInstanceID() != InventoryButtons[activeSlot].GetComponentInChildren<Image>().gameObject.GetInstanceID())
+                {
+                    im.sprite = null;
+                }
+            }
             inventory[activeSlot] = null;
             SlotSelect(activeSlot);
         }
