@@ -283,6 +283,7 @@ public class EnemyBehaviour : MonoBehaviour
 
         dist = Vector3.Distance(playerTarget.position, transform.position);
 
+        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
 
 
         if (visibleO.Count != 0)
@@ -333,7 +334,8 @@ public class EnemyBehaviour : MonoBehaviour
         {
             changeLayerToDefault = false;
 
-            transform.LookAt(visibleO[0]);
+            Vector3 visib = new Vector3(visibleO[0].position.x, 0, visibleO[0].position.z);
+            transform.LookAt(visib);
 
             if (goLookDuration < 50)
             {
@@ -343,7 +345,7 @@ public class EnemyBehaviour : MonoBehaviour
             else if (goLookDuration > 50 && distFromObj > 3)
             {
                 navMeshAgent.speed = speed;
-                navMeshAgent.SetDestination(whereFell);
+                navMeshAgent.SetDestination(visib);
             }
             else if (distFromObj <= 3 && investigateDuration < 200)
             {
