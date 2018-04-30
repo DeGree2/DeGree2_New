@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour {
         if (HealthBarScript.health <= 0) { }
         else if (HealthBarScript.levelCompleted == true) { }
 
-        else if (Input.anyKey)
+        else if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
             Move();
 
 	}
