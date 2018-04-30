@@ -406,6 +406,14 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -95.450005
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6ae4988e9e2ba5d41a6bd328ab7421dd, type: 2}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 6ae4988e9e2ba5d41a6bd328ab7421dd, type: 2}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ae4988e9e2ba5d41a6bd328ab7421dd, type: 2}
   m_IsPrefabParent: 0
@@ -419,7 +427,7 @@ GameObject:
   - component: {fileID: 44851615}
   - component: {fileID: 44851617}
   - component: {fileID: 44851616}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Blue Hardcover Book Texture.4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -600,6 +608,14 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -88.026
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 771d46ac19709e74dbaf896f0dcb29f1, type: 2}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 771d46ac19709e74dbaf896f0dcb29f1, type: 2}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 771d46ac19709e74dbaf896f0dcb29f1, type: 2}
   m_IsPrefabParent: 0
@@ -764,7 +780,7 @@ GameObject:
   - component: {fileID: 57058635}
   - component: {fileID: 57058637}
   - component: {fileID: 57058636}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Thin Paperback.3.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1157,8 +1173,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 85507295}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.74, y: 10, z: -19.198}
-  m_LocalScale: {x: 1, y: 4, z: 10.02446}
+  m_LocalPosition: {x: 17.74, y: 10, z: -18.9842}
+  m_LocalScale: {x: 1, y: 4, z: 9.403662}
   m_Children: []
   m_Father: {fileID: 1407638129}
   m_RootOrder: 9
@@ -2025,7 +2041,7 @@ GameObject:
   - component: {fileID: 138855203}
   - component: {fileID: 138855205}
   - component: {fileID: 138855204}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Blue Hardcover Book Texture.2.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2193,6 +2209,7 @@ GameObject:
   - component: {fileID: 155251868}
   - component: {fileID: 155251867}
   - component: {fileID: 155251871}
+  - component: {fileID: 155251872}
   m_Layer: 9
   m_Name: Tarkim Door
   m_TagString: Untagged
@@ -2296,6 +2313,18 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &155251872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 155251865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5bb8afdd6ee9844fba2e8ba00a946b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hidden: 0
 --- !u!1 &157836462
 GameObject:
   m_ObjectHideFlags: 0
@@ -2614,7 +2643,7 @@ GameObject:
   - component: {fileID: 182219306}
   - component: {fileID: 182219308}
   - component: {fileID: 182219307}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Encyclopedia.7.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2776,6 +2805,54 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -125.574005
       objectReference: {fileID: 0}
+    - target: {fileID: 100052, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100022, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100026, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100018, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100050, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
   m_IsPrefabParent: 0
@@ -2875,7 +2952,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 6ae4988e9e2ba5d41a6bd328ab7421dd, type: 2}
       propertyPath: m_RootOrder
-      value: 39
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 6ae4988e9e2ba5d41a6bd328ab7421dd, type: 2}
       propertyPath: m_LocalScale.x
@@ -2896,6 +2973,14 @@ Prefab:
     - target: {fileID: 100002, guid: 6ae4988e9e2ba5d41a6bd328ab7421dd, type: 2}
       propertyPath: m_Name
       value: locker_01c (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6ae4988e9e2ba5d41a6bd328ab7421dd, type: 2}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 6ae4988e9e2ba5d41a6bd328ab7421dd, type: 2}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ae4988e9e2ba5d41a6bd328ab7421dd, type: 2}
@@ -3009,7 +3094,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 771d46ac19709e74dbaf896f0dcb29f1, type: 2}
       propertyPath: m_RootOrder
-      value: 50
+      value: 49
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 771d46ac19709e74dbaf896f0dcb29f1, type: 2}
       propertyPath: m_LocalScale.x
@@ -3030,6 +3115,14 @@ Prefab:
     - target: {fileID: 100002, guid: 771d46ac19709e74dbaf896f0dcb29f1, type: 2}
       propertyPath: m_Name
       value: locker_01b (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 771d46ac19709e74dbaf896f0dcb29f1, type: 2}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 771d46ac19709e74dbaf896f0dcb29f1, type: 2}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 771d46ac19709e74dbaf896f0dcb29f1, type: 2}
@@ -3140,7 +3233,7 @@ GameObject:
   - component: {fileID: 220317053}
   - component: {fileID: 220317055}
   - component: {fileID: 220317054}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mid Thick Hardcover Book
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3284,8 +3377,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 221050790}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.1, y: 10, z: 15.678}
-  m_LocalScale: {x: 1, y: 4, z: 20.472498}
+  m_LocalPosition: {x: -9.1, y: 10, z: 15.4875}
+  m_LocalScale: {x: 1, y: 4, z: 20.195913}
   m_Children: []
   m_Father: {fileID: 1407638129}
   m_RootOrder: 0
@@ -3678,8 +3771,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1620613504}
-  offset: {x: -2.5, y: 7, z: -2.5}
-  smoothSpeed: 2.5
+  offset: {x: -2.5, y: 6, z: -2.5}
+  smoothSpeed: 5
 --- !u!1 &238171961 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100012, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
@@ -4151,6 +4244,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 63d1b85f6a90d4e4cbe4e69b2b2f374f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63d1b85f6a90d4e4cbe4e69b2b2f374f, type: 3}
   m_IsPrefabParent: 0
@@ -4241,8 +4338,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 280025069}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.9, y: 10, z: -2.2}
-  m_LocalScale: {x: 11.599828, y: 4, z: 1}
+  m_LocalPosition: {x: -14.6924, y: 10, z: -2.2}
+  m_LocalScale: {x: 10.184713, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 1407638129}
   m_RootOrder: 8
@@ -4398,7 +4495,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 109.75
+      value: 113.74
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4406,7 +4503,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -147.5
+      value: -135.21
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
       propertyPath: m_LocalRotation.x
@@ -4414,7 +4511,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.05819355
+      value: 0.81035364
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
       propertyPath: m_LocalRotation.z
@@ -4422,7 +4519,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9983053
+      value: 0.58594114
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
       propertyPath: m_RootOrder
@@ -4486,11 +4583,59 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -6.6720004
+      value: 108.261
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
       propertyPath: m_Name
       value: prop_robotArm (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100052, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100050, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100026, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100022, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100018, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
@@ -4532,7 +4677,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b172c6ecbd1d86e4fbd45ce106b6e29f, type: 3}
       propertyPath: m_RootOrder
-      value: 44
+      value: 43
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b172c6ecbd1d86e4fbd45ce106b6e29f, type: 3}
       propertyPath: m_LocalScale.x
@@ -4721,7 +4866,7 @@ GameObject:
   - component: {fileID: 330154150}
   - component: {fileID: 330154152}
   - component: {fileID: 330154151}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Thin Paperback.1.4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4821,7 +4966,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dd8c80a5a447f04418da146781b05fd8, type: 3}
       propertyPath: m_RootOrder
-      value: 33
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: dd8c80a5a447f04418da146781b05fd8, type: 3}
       propertyPath: m_Materials.Array.data[1]
@@ -4866,6 +5011,18 @@ Prefab:
     - target: {fileID: 100000, guid: dd8c80a5a447f04418da146781b05fd8, type: 3}
       propertyPath: m_Name
       value: vehicle_rcFlyer_clean (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dd8c80a5a447f04418da146781b05fd8, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: dd8c80a5a447f04418da146781b05fd8, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: dd8c80a5a447f04418da146781b05fd8, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dd8c80a5a447f04418da146781b05fd8, type: 3}
@@ -4958,7 +5115,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b172c6ecbd1d86e4fbd45ce106b6e29f, type: 3}
       propertyPath: m_RootOrder
-      value: 47
+      value: 46
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b172c6ecbd1d86e4fbd45ce106b6e29f, type: 3}
       propertyPath: m_LocalScale.x
@@ -5160,6 +5317,7 @@ GameObject:
   - component: {fileID: 363832789}
   - component: {fileID: 363832788}
   - component: {fileID: 363832792}
+  - component: {fileID: 363832793}
   m_Layer: 9
   m_Name: Tarkim Door
   m_TagString: Untagged
@@ -5263,6 +5421,18 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &363832793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 363832786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5bb8afdd6ee9844fba2e8ba00a946b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hidden: 0
 --- !u!1 &365356817 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100014, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
@@ -5332,7 +5502,7 @@ GameObject:
   - component: {fileID: 374047176}
   - component: {fileID: 374047178}
   - component: {fileID: 374047177}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Encyclopedia.1.3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5478,7 +5648,7 @@ GameObject:
   - component: {fileID: 374803697}
   - component: {fileID: 374803699}
   - component: {fileID: 374803698}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Thin Paperback.5.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5838,8 +6008,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 398157218}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.7, y: 10, z: 3.269}
-  m_LocalScale: {x: 1.0000005, y: 4, z: 15.4597}
+  m_LocalPosition: {x: 17.7, y: 10, z: 3.2229}
+  m_LocalScale: {x: 1.0000005, y: 4, z: 15.530055}
   m_Children: []
   m_Father: {fileID: 1407638129}
   m_RootOrder: 11
@@ -5949,7 +6119,7 @@ GameObject:
   - component: {fileID: 402813764}
   - component: {fileID: 402813766}
   - component: {fileID: 402813765}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Gardening.2.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6502,7 +6672,7 @@ GameObject:
   - component: {fileID: 442862041}
   - component: {fileID: 442862043}
   - component: {fileID: 442862042}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mid Thick Hardcover Book.1.4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6624,6 +6794,7 @@ GameObject:
   - component: {fileID: 456761805}
   - component: {fileID: 456761804}
   - component: {fileID: 456761808}
+  - component: {fileID: 456761809}
   m_Layer: 9
   m_Name: Tarkim Door
   m_TagString: Untagged
@@ -6727,6 +6898,18 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &456761809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 456761802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5bb8afdd6ee9844fba2e8ba00a946b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hidden: 0
 --- !u!1 &458508997 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: ea90797f5a8073e4cbc72f859e3782b8, type: 3}
@@ -6783,7 +6966,7 @@ GameObject:
   - component: {fileID: 462114587}
   - component: {fileID: 462114589}
   - component: {fileID: 462114588}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Gardening.1.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7272,6 +7455,26 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: dd8c80a5a447f04418da146781b05fd8, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: dd8c80a5a447f04418da146781b05fd8, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dd8c80a5a447f04418da146781b05fd8, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: dd8c80a5a447f04418da146781b05fd8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: dd8c80a5a447f04418da146781b05fd8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dd8c80a5a447f04418da146781b05fd8, type: 3}
   m_IsPrefabParent: 0
@@ -7312,7 +7515,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 771d46ac19709e74dbaf896f0dcb29f1, type: 2}
       propertyPath: m_RootOrder
-      value: 40
+      value: 39
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 771d46ac19709e74dbaf896f0dcb29f1, type: 2}
       propertyPath: m_LocalScale.x
@@ -7333,6 +7536,14 @@ Prefab:
     - target: {fileID: 100002, guid: 771d46ac19709e74dbaf896f0dcb29f1, type: 2}
       propertyPath: m_Name
       value: locker_01b (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 771d46ac19709e74dbaf896f0dcb29f1, type: 2}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 771d46ac19709e74dbaf896f0dcb29f1, type: 2}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 771d46ac19709e74dbaf896f0dcb29f1, type: 2}
@@ -7473,7 +7684,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400138, guid: 955d19db0ee9363409b46dde3e78ca22, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 22.9
+      value: 28.63
       objectReference: {fileID: 0}
     - target: {fileID: 400138, guid: 955d19db0ee9363409b46dde3e78ca22, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7481,7 +7692,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400138, guid: 955d19db0ee9363409b46dde3e78ca22, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 31.62
+      value: 20.84
       objectReference: {fileID: 0}
     - target: {fileID: 400138, guid: 955d19db0ee9363409b46dde3e78ca22, type: 3}
       propertyPath: m_LocalRotation.x
@@ -7590,7 +7801,7 @@ MonoBehaviour:
   WayPoints:
   - 30;0;20
   - 25;0;20
-  - 25;0;30
+  - 25;0;27
   - 30;0;30
   speed: 3
   attackSpeed: 6
@@ -7613,7 +7824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewRadius: 15
-  viewAngle: 35
+  viewAngle: 60
   targetMask:
     serializedVersion: 2
     m_Bits: 256
@@ -8223,7 +8434,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 584188476}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: cardboard box.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8401,7 +8612,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 120.62
+      value: 108.18886
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8409,7 +8620,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -152.2
+      value: -138.53502
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
       propertyPath: m_LocalRotation.x
@@ -8417,7 +8628,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.90568876
+      value: 0.28839645
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
       propertyPath: m_LocalRotation.z
@@ -8425,7 +8636,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.42394325
+      value: 0.9575111
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
       propertyPath: m_RootOrder
@@ -8489,11 +8700,59 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -129.832
+      value: 33.524002
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
       propertyPath: m_Name
       value: prop_robotArm (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100052, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100050, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100022, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100018, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100026, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
@@ -8631,7 +8890,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 09ab09c4c72d1bc42b19fdae40567808, type: 3}
       propertyPath: m_RootOrder
-      value: 42
+      value: 41
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 09ab09c4c72d1bc42b19fdae40567808, type: 3}
       propertyPath: m_LocalScale.x
@@ -8673,6 +8932,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e2ff4118305d11c41bb216685380c6ab, type: 2}
+    - target: {fileID: 100000, guid: 09ab09c4c72d1bc42b19fdae40567808, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 09ab09c4c72d1bc42b19fdae40567808, type: 3}
   m_IsPrefabParent: 0
@@ -9412,7 +9675,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b172c6ecbd1d86e4fbd45ce106b6e29f, type: 3}
       propertyPath: m_RootOrder
-      value: 48
+      value: 47
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b172c6ecbd1d86e4fbd45ce106b6e29f, type: 3}
       propertyPath: m_LocalScale.x
@@ -9706,8 +9969,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 661098143}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 30.27, y: 10, z: 0.8}
-  m_LocalScale: {x: 1.03, y: 4, z: 51}
+  m_LocalPosition: {x: 30.27, y: 10, z: 0.4428}
+  m_LocalScale: {x: 1.03, y: 4, z: 50.28569}
   m_Children: []
   m_Father: {fileID: 1407638129}
   m_RootOrder: 13
@@ -10345,7 +10608,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400026, guid: 2a7850605a17f504bbfdfaa591d5b419, type: 3}
       propertyPath: m_RootOrder
-      value: 21
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 400026, guid: 2a7850605a17f504bbfdfaa591d5b419, type: 3}
       propertyPath: m_LocalScale.x
@@ -10419,6 +10682,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 888daeabd7af8694783c9a32a9ca19d2, type: 2}
+    - target: {fileID: 100026, guid: 2a7850605a17f504bbfdfaa591d5b419, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a7850605a17f504bbfdfaa591d5b419, type: 3}
   m_IsPrefabParent: 0
@@ -11094,7 +11361,7 @@ GameObject:
   - component: {fileID: 751319073}
   - component: {fileID: 751319075}
   - component: {fileID: 751319074}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Encyclopedia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11415,6 +11682,7 @@ GameObject:
   - component: {fileID: 781086071}
   - component: {fileID: 781086070}
   - component: {fileID: 781086074}
+  - component: {fileID: 781086075}
   m_Layer: 9
   m_Name: Tarkim Door
   m_TagString: Untagged
@@ -11518,6 +11786,18 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &781086075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 781086068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5bb8afdd6ee9844fba2e8ba00a946b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hidden: 0
 --- !u!1 &782177281
 GameObject:
   m_ObjectHideFlags: 0
@@ -11528,7 +11808,7 @@ GameObject:
   - component: {fileID: 782177282}
   - component: {fileID: 782177284}
   - component: {fileID: 782177283}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: History Of The World.1.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11601,7 +11881,7 @@ GameObject:
   - component: {fileID: 783032028}
   - component: {fileID: 783032030}
   - component: {fileID: 783032029}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Thin Hardcover.3.3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11795,7 +12075,7 @@ GameObject:
   - component: {fileID: 792810714}
   - component: {fileID: 792810716}
   - component: {fileID: 792810715}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Encyclopedia.4.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11944,6 +12224,7 @@ GameObject:
   - component: {fileID: 796041346}
   - component: {fileID: 796041345}
   - component: {fileID: 796041349}
+  - component: {fileID: 796041350}
   m_Layer: 9
   m_Name: Tarkim Door
   m_TagString: Untagged
@@ -12047,6 +12328,18 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &796041350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 796041343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5bb8afdd6ee9844fba2e8ba00a946b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hidden: 0
 --- !u!1 &805305116 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100010, guid: 2a7850605a17f504bbfdfaa591d5b419, type: 3}
@@ -12225,7 +12518,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 830339340}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Lower Poly Bookcase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12441,7 +12734,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 614fa0bc947f1964ab4ab6060d0756b4, type: 3}
       propertyPath: m_RootOrder
-      value: 34
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 614fa0bc947f1964ab4ab6060d0756b4, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -12511,7 +12804,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 6ae4988e9e2ba5d41a6bd328ab7421dd, type: 2}
       propertyPath: m_RootOrder
-      value: 49
+      value: 48
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 6ae4988e9e2ba5d41a6bd328ab7421dd, type: 2}
       propertyPath: m_LocalScale.x
@@ -12532,6 +12825,14 @@ Prefab:
     - target: {fileID: 100002, guid: 6ae4988e9e2ba5d41a6bd328ab7421dd, type: 2}
       propertyPath: m_Name
       value: locker_01c (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 6ae4988e9e2ba5d41a6bd328ab7421dd, type: 2}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6ae4988e9e2ba5d41a6bd328ab7421dd, type: 2}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ae4988e9e2ba5d41a6bd328ab7421dd, type: 2}
@@ -12719,8 +13020,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 851087912}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.807, y: 10, z: 16}
-  m_LocalScale: {x: 17.995071, y: 4, z: 1}
+  m_LocalPosition: {x: 8.4544, y: 10, z: 16}
+  m_LocalScale: {x: 17.451015, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 1407638129}
   m_RootOrder: 1
@@ -13013,7 +13314,7 @@ GameObject:
   - component: {fileID: 856288484}
   - component: {fileID: 856288486}
   - component: {fileID: 856288485}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Encyclopedia.1.4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13475,6 +13776,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 614fa0bc947f1964ab4ab6060d0756b4, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 614fa0bc947f1964ab4ab6060d0756b4, type: 3}
   m_IsPrefabParent: 0
@@ -13488,7 +13793,7 @@ GameObject:
   - component: {fileID: 875632742}
   - component: {fileID: 875632744}
   - component: {fileID: 875632743}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Blue Hardcover Book Texture.2.3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13561,7 +13866,7 @@ GameObject:
   - component: {fileID: 878966307}
   - component: {fileID: 878966309}
   - component: {fileID: 878966308}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Thin Paperback.2.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14063,6 +14368,18 @@ Prefab:
       propertyPath: m_Name
       value: vehicle_rcFlyer_clean (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dd8c80a5a447f04418da146781b05fd8, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: dd8c80a5a447f04418da146781b05fd8, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: dd8c80a5a447f04418da146781b05fd8, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dd8c80a5a447f04418da146781b05fd8, type: 3}
   m_IsPrefabParent: 0
@@ -14076,7 +14393,7 @@ GameObject:
   - component: {fileID: 907898369}
   - component: {fileID: 907898371}
   - component: {fileID: 907898370}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Thin Hardcover.3.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14153,7 +14470,7 @@ GameObject:
   - component: {fileID: 909389029}
   - component: {fileID: 909389031}
   - component: {fileID: 909389030}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Thin Hardcover.1.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14347,7 +14664,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 949229023}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Book Set Texture.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14475,7 +14792,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 958646611}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14675,8 +14992,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 971152586}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.91, y: 10, z: 16}
-  m_LocalScale: {x: 4.499011, y: 4, z: 1}
+  m_LocalPosition: {x: -6.609, y: 10, z: 16}
+  m_LocalScale: {x: 3.9846377, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 1407638129}
   m_RootOrder: 14
@@ -16098,7 +16415,7 @@ GameObject:
   - component: {fileID: 1091758631}
   - component: {fileID: 1091758633}
   - component: {fileID: 1091758632}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Paperbox.1.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16371,8 +16688,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1111852648}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 23.474, y: 10, z: -9.4}
-  m_LocalScale: {x: 12.630685, y: 4, z: 1}
+  m_LocalPosition: {x: 23.4835, y: 10, z: -9.4}
+  m_LocalScale: {x: 12.543687, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 1407638129}
   m_RootOrder: 5
@@ -16546,8 +16863,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1117740059}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 24.05, y: 10, z: 8.5}
-  m_LocalScale: {x: 13.126269, y: 4, z: 1}
+  m_LocalPosition: {x: 23.9758, y: 10, z: 8.5}
+  m_LocalScale: {x: 11.562835, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 1407638129}
   m_RootOrder: 6
@@ -16891,8 +17208,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1147852391}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 5.1, y: 10, z: -24.2}
-  m_LocalScale: {x: 1.0300004, y: 4, z: 51}
+  m_LocalPosition: {x: 4.4711, y: 10, z: -24.2}
+  m_LocalScale: {x: 1.0300004, y: 4, z: 50.56696}
   m_Children: []
   m_Father: {fileID: 1407638129}
   m_RootOrder: 3
@@ -17370,7 +17687,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b172c6ecbd1d86e4fbd45ce106b6e29f, type: 3}
       propertyPath: m_RootOrder
-      value: 29
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b172c6ecbd1d86e4fbd45ce106b6e29f, type: 3}
       propertyPath: m_LocalScale.x
@@ -17510,7 +17827,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 6ae4988e9e2ba5d41a6bd328ab7421dd, type: 2}
       propertyPath: m_RootOrder
-      value: 36
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 6ae4988e9e2ba5d41a6bd328ab7421dd, type: 2}
       propertyPath: m_LocalScale.x
@@ -17531,6 +17848,14 @@ Prefab:
     - target: {fileID: 100002, guid: 6ae4988e9e2ba5d41a6bd328ab7421dd, type: 2}
       propertyPath: m_Name
       value: locker_01c (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6ae4988e9e2ba5d41a6bd328ab7421dd, type: 2}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 6ae4988e9e2ba5d41a6bd328ab7421dd, type: 2}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ae4988e9e2ba5d41a6bd328ab7421dd, type: 2}
@@ -17776,7 +18101,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: eb0125e8f65ef344badca7bc5ca636c0, type: 2}
     - target: {fileID: 100000, guid: d8fd8c8e20c62d84eaf61388c8195de0, type: 2}
       propertyPath: m_Layer
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d8fd8c8e20c62d84eaf61388c8195de0, type: 2}
       propertyPath: m_LocalScale.x
@@ -17916,7 +18241,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: e1978285e2f37954d90e9a40b85e6ce0, type: 3}
       propertyPath: m_RootOrder
-      value: 26
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: e1978285e2f37954d90e9a40b85e6ce0, type: 3}
       propertyPath: m_LocalScale.y
@@ -18342,6 +18667,10 @@ Prefab:
     - target: {fileID: 400000, guid: 2028cb1f4b4384a4a94c587c3b1a8df3, type: 3}
       propertyPath: m_LocalScale.z
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 2028cb1f4b4384a4a94c587c3b1a8df3, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2028cb1f4b4384a4a94c587c3b1a8df3, type: 3}
@@ -19032,7 +19361,7 @@ GameObject:
   - component: {fileID: 1295401993}
   - component: {fileID: 1295401995}
   - component: {fileID: 1295401994}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mid Thick Hardcover Book.1.6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19491,7 +19820,7 @@ GameObject:
   - component: {fileID: 1325059918}
   - component: {fileID: 1325059920}
   - component: {fileID: 1325059919}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Thin Paperback.1.3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19637,7 +19966,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 09ab09c4c72d1bc42b19fdae40567808, type: 3}
       propertyPath: m_RootOrder
-      value: 25
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 09ab09c4c72d1bc42b19fdae40567808, type: 3}
       propertyPath: m_LocalScale.x
@@ -19679,6 +20008,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e2ff4118305d11c41bb216685380c6ab, type: 2}
+    - target: {fileID: 100000, guid: 09ab09c4c72d1bc42b19fdae40567808, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 09ab09c4c72d1bc42b19fdae40567808, type: 3}
   m_IsPrefabParent: 0
@@ -19719,7 +20052,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 40c6ea708bebc584da0647a9c0cbae59, type: 3}
       propertyPath: m_RootOrder
-      value: 24
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 40c6ea708bebc584da0647a9c0cbae59, type: 3}
       propertyPath: m_LocalScale.x
@@ -19872,8 +20205,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3ef033a5f9d9aa4484ff6100ee727c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 7.8
-  viewAngle: 35
+  viewRadius: 12.6
+  viewAngle: 60
   targetMask:
     serializedVersion: 2
     m_Bits: 256
@@ -20144,7 +20477,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 771d46ac19709e74dbaf896f0dcb29f1, type: 2}
       propertyPath: m_RootOrder
-      value: 41
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 771d46ac19709e74dbaf896f0dcb29f1, type: 2}
       propertyPath: m_LocalScale.x
@@ -20165,6 +20498,14 @@ Prefab:
     - target: {fileID: 100002, guid: 771d46ac19709e74dbaf896f0dcb29f1, type: 2}
       propertyPath: m_Name
       value: locker_01b (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 771d46ac19709e74dbaf896f0dcb29f1, type: 2}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 771d46ac19709e74dbaf896f0dcb29f1, type: 2}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 771d46ac19709e74dbaf896f0dcb29f1, type: 2}
@@ -20539,6 +20880,10 @@ Prefab:
       propertyPath: m_TagString
       value: interObject
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f6c51af23a703e94f9f7b73590d09342, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f6c51af23a703e94f9f7b73590d09342, type: 3}
   m_IsPrefabParent: 0
@@ -20679,7 +21024,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1383064787}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 37.57, y: 2.52, z: 19.85}
+  m_LocalPosition: {x: 37.57, y: 2.52, z: 19.776}
   m_LocalScale: {x: 0.21135677, y: 4, z: 0.41990563}
   m_Children:
   - {fileID: 796041344}
@@ -21013,7 +21358,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4909941690500726, guid: d95dfe9eeea7731489064565a2d8b306, type: 2}
       propertyPath: m_RootOrder
-      value: 35
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 4909941690500726, guid: d95dfe9eeea7731489064565a2d8b306, type: 2}
       propertyPath: m_LocalScale.x
@@ -21147,6 +21492,7 @@ GameObject:
   - component: {fileID: 1398991171}
   - component: {fileID: 1398991170}
   - component: {fileID: 1398991174}
+  - component: {fileID: 1398991175}
   m_Layer: 9
   m_Name: Tarkim Door
   m_TagString: Untagged
@@ -21250,6 +21596,18 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &1398991175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1398991168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5bb8afdd6ee9844fba2e8ba00a946b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hidden: 0
 --- !u!1 &1401153331
 GameObject:
   m_ObjectHideFlags: 0
@@ -21727,7 +22085,7 @@ GameObject:
   - component: {fileID: 1408849130}
   - component: {fileID: 1408849132}
   - component: {fileID: 1408849131}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Thin Hardcover.4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21929,7 +22287,7 @@ GameObject:
   - component: {fileID: 1425088348}
   - component: {fileID: 1425088350}
   - component: {fileID: 1425088349}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mid Thick Hardcover Book.1.5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22463,7 +22821,7 @@ GameObject:
   - component: {fileID: 1466723243}
   - component: {fileID: 1466723245}
   - component: {fileID: 1466723244}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mid Thick Hardcover Book.2.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23012,7 +23370,7 @@ GameObject:
   - component: {fileID: 1498759164}
   - component: {fileID: 1498759166}
   - component: {fileID: 1498759165}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Blue Hardcover Book Texture.1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23704,7 +24062,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dd8c80a5a447f04418da146781b05fd8, type: 3}
       propertyPath: m_RootOrder
-      value: 46
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: dd8c80a5a447f04418da146781b05fd8, type: 3}
       propertyPath: m_Materials.Array.data[1]
@@ -23749,6 +24107,18 @@ Prefab:
     - target: {fileID: 100000, guid: dd8c80a5a447f04418da146781b05fd8, type: 3}
       propertyPath: m_Name
       value: vehicle_rcFlyer_clean (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: dd8c80a5a447f04418da146781b05fd8, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: dd8c80a5a447f04418da146781b05fd8, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dd8c80a5a447f04418da146781b05fd8, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dd8c80a5a447f04418da146781b05fd8, type: 3}
@@ -23926,8 +24296,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1549170278}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.1, y: 10, z: -19.099}
-  m_LocalScale: {x: 1, y: 4, z: 9.733526}
+  m_LocalPosition: {x: -9.1, y: 10, z: -18.9722}
+  m_LocalScale: {x: 1, y: 4, z: 9.429749}
   m_Children: []
   m_Father: {fileID: 1407638129}
   m_RootOrder: 10
@@ -24055,8 +24425,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1550460460}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.1, y: 10, z: -4.375}
-  m_LocalScale: {x: 1, y: 4, z: 10.874375}
+  m_LocalPosition: {x: -9.1, y: 10, z: -4.4331}
+  m_LocalScale: {x: 1, y: 4, z: 10.962019}
   m_Children: []
   m_Father: {fileID: 1407638129}
   m_RootOrder: 7
@@ -24225,7 +24595,7 @@ GameObject:
   - component: {fileID: 1562188214}
   - component: {fileID: 1562188216}
   - component: {fileID: 1562188215}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Thin Paperback.6.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24298,7 +24668,7 @@ GameObject:
   - component: {fileID: 1568496118}
   - component: {fileID: 1568496120}
   - component: {fileID: 1568496119}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Encyclopedia.5.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24537,6 +24907,14 @@ Prefab:
     - target: {fileID: 400002, guid: b7b9112f4651c5341af4f4f45a166e03, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -104.007
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b7b9112f4651c5341af4f4f45a166e03, type: 2}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: b7b9112f4651c5341af4f4f45a166e03, type: 2}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7b9112f4651c5341af4f4f45a166e03, type: 2}
@@ -26368,7 +26746,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: ea90797f5a8073e4cbc72f859e3782b8, type: 3}
       propertyPath: m_RootOrder
-      value: 22
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: ea90797f5a8073e4cbc72f859e3782b8, type: 3}
       propertyPath: m_LocalScale.x
@@ -26390,6 +26768,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e2ff4118305d11c41bb216685380c6ab, type: 2}
+    - target: {fileID: 100004, guid: ea90797f5a8073e4cbc72f859e3782b8, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ea90797f5a8073e4cbc72f859e3782b8, type: 3}
   m_IsPrefabParent: 0
@@ -26489,7 +26871,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b172c6ecbd1d86e4fbd45ce106b6e29f, type: 3}
       propertyPath: m_RootOrder
-      value: 31
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b172c6ecbd1d86e4fbd45ce106b6e29f, type: 3}
       propertyPath: m_LocalScale.x
@@ -26524,7 +26906,7 @@ GameObject:
   - component: {fileID: 1653151488}
   - component: {fileID: 1653151490}
   - component: {fileID: 1653151489}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Paperbox.1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27053,7 +27435,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 771d46ac19709e74dbaf896f0dcb29f1, type: 2}
       propertyPath: m_RootOrder
-      value: 37
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 771d46ac19709e74dbaf896f0dcb29f1, type: 2}
       propertyPath: m_LocalScale.x
@@ -27074,6 +27456,14 @@ Prefab:
     - target: {fileID: 100002, guid: 771d46ac19709e74dbaf896f0dcb29f1, type: 2}
       propertyPath: m_Name
       value: locker_01b (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 771d46ac19709e74dbaf896f0dcb29f1, type: 2}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 771d46ac19709e74dbaf896f0dcb29f1, type: 2}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 771d46ac19709e74dbaf896f0dcb29f1, type: 2}
@@ -27355,7 +27745,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 821da9cb1c989dd489ae524930f6bb0f, type: 3}
       propertyPath: m_RootOrder
-      value: 23
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 821da9cb1c989dd489ae524930f6bb0f, type: 3}
       propertyPath: m_LocalScale.y
@@ -27384,6 +27774,10 @@ Prefab:
     - target: {fileID: 100000, guid: 821da9cb1c989dd489ae524930f6bb0f, type: 3}
       propertyPath: m_Name
       value: Rack
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 821da9cb1c989dd489ae524930f6bb0f, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 821da9cb1c989dd489ae524930f6bb0f, type: 3}
@@ -27731,6 +28125,54 @@ Prefab:
     - target: {fileID: 100000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
       propertyPath: m_Name
       value: prop_robotArm (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100052, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100050, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100018, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100026, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100022, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 46650462f25a2914787b3a152889f2d3, type: 3}
@@ -28125,7 +28567,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b172c6ecbd1d86e4fbd45ce106b6e29f, type: 3}
       propertyPath: m_RootOrder
-      value: 32
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b172c6ecbd1d86e4fbd45ce106b6e29f, type: 3}
       propertyPath: m_LocalScale.x
@@ -28442,7 +28884,7 @@ GameObject:
   - component: {fileID: 1865828240}
   - component: {fileID: 1865828239}
   - component: {fileID: 1865828238}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bookshelf.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29011,7 +29453,7 @@ GameObject:
   - component: {fileID: 1917372117}
   - component: {fileID: 1917372119}
   - component: {fileID: 1917372118}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: History Of The World.3.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29088,7 +29530,7 @@ GameObject:
   - component: {fileID: 1924898354}
   - component: {fileID: 1924898356}
   - component: {fileID: 1924898355}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Encyclopedia.2.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29513,7 +29955,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1931240472}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 37.54, y: 2.52, z: 39.65}
+  m_LocalPosition: {x: 37.554, y: 2.52, z: 39.65}
   m_LocalScale: {x: 0.21135677, y: 4, z: 0.41990563}
   m_Children:
   - {fileID: 1920988994}
@@ -29558,7 +30000,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 09ab09c4c72d1bc42b19fdae40567808, type: 3}
       propertyPath: m_RootOrder
-      value: 28
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 09ab09c4c72d1bc42b19fdae40567808, type: 3}
       propertyPath: m_LocalScale.x
@@ -29600,6 +30042,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e2ff4118305d11c41bb216685380c6ab, type: 2}
+    - target: {fileID: 100000, guid: 09ab09c4c72d1bc42b19fdae40567808, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 09ab09c4c72d1bc42b19fdae40567808, type: 3}
   m_IsPrefabParent: 0
@@ -29613,7 +30059,7 @@ GameObject:
   - component: {fileID: 1935928294}
   - component: {fileID: 1935928296}
   - component: {fileID: 1935928295}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Encyclopedia.6.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29840,7 +30286,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: b7b9112f4651c5341af4f4f45a166e03, type: 2}
       propertyPath: m_RootOrder
-      value: 38
+      value: 37
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: b7b9112f4651c5341af4f4f45a166e03, type: 2}
       propertyPath: m_LocalScale.x
@@ -29861,6 +30307,14 @@ Prefab:
     - target: {fileID: 100002, guid: b7b9112f4651c5341af4f4f45a166e03, type: 2}
       propertyPath: m_Name
       value: locker_01a (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b7b9112f4651c5341af4f4f45a166e03, type: 2}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: b7b9112f4651c5341af4f4f45a166e03, type: 2}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7b9112f4651c5341af4f4f45a166e03, type: 2}
@@ -30230,7 +30684,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b172c6ecbd1d86e4fbd45ce106b6e29f, type: 3}
       propertyPath: m_RootOrder
-      value: 45
+      value: 44
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b172c6ecbd1d86e4fbd45ce106b6e29f, type: 3}
       propertyPath: m_LocalScale.x
@@ -30338,7 +30792,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d8fd8c8e20c62d84eaf61388c8195de0, type: 2}
       propertyPath: m_RootOrder
-      value: 27
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: d8fd8c8e20c62d84eaf61388c8195de0, type: 2}
       propertyPath: m_Materials.Array.data[0]
@@ -30731,7 +31185,7 @@ GameObject:
   - component: {fileID: 1991097361}
   - component: {fileID: 1991097363}
   - component: {fileID: 1991097362}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: cupboard.1.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31144,7 +31598,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b172c6ecbd1d86e4fbd45ce106b6e29f, type: 3}
       propertyPath: m_RootOrder
-      value: 43
+      value: 42
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b172c6ecbd1d86e4fbd45ce106b6e29f, type: 3}
       propertyPath: m_LocalScale.x
@@ -31244,7 +31698,7 @@ GameObject:
   - component: {fileID: 2013294382}
   - component: {fileID: 2013294384}
   - component: {fileID: 2013294383}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Thin Hardcover.4.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31457,7 +31911,7 @@ GameObject:
   - component: {fileID: 2036295929}
   - component: {fileID: 2036295931}
   - component: {fileID: 2036295930}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Thin Hardcover.2.3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31612,7 +32066,7 @@ GameObject:
   - component: {fileID: 2041078317}
   - component: {fileID: 2041078319}
   - component: {fileID: 2041078318}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Encyclopedia.3.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31703,8 +32157,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2047929828}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.3, y: 10, z: 0.7}
-  m_LocalScale: {x: 1.03, y: 4, z: 51}
+  m_LocalPosition: {x: -20.3, y: 10, z: 0.9474}
+  m_LocalScale: {x: 1.03, y: 4, z: 49.27683}
   m_Children: []
   m_Father: {fileID: 1407638129}
   m_RootOrder: 2
@@ -32356,8 +32810,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2067279945}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.68, y: 10, z: 20.561}
-  m_LocalScale: {x: 1, y: 4, z: 10.47799}
+  m_LocalPosition: {x: 17.68, y: 10, z: 20.4591}
+  m_LocalScale: {x: 1, y: 4, z: 10.25756}
   m_Children: []
   m_Father: {fileID: 1407638129}
   m_RootOrder: 4
@@ -32967,7 +33421,7 @@ GameObject:
   - component: {fileID: 2118056925}
   - component: {fileID: 2118056927}
   - component: {fileID: 2118056926}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Blue Hardcover Book Texture.3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33067,7 +33521,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b172c6ecbd1d86e4fbd45ce106b6e29f, type: 3}
       propertyPath: m_RootOrder
-      value: 30
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b172c6ecbd1d86e4fbd45ce106b6e29f, type: 3}
       propertyPath: m_LocalScale.x
@@ -33244,7 +33698,7 @@ GameObject:
   - component: {fileID: 2146658602}
   - component: {fileID: 2146658604}
   - component: {fileID: 2146658603}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Thin Paperback.4.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
