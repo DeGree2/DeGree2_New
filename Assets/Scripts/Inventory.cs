@@ -76,6 +76,8 @@ public class Inventory : MonoBehaviour {
             }
             activeSlot = index;
             InventoryButtons[index].GetComponent<Image>().color = Color.grey;
+            message.text = inventory[index].GetComponent<Item>().objectName + " selected";
+            message.SendMessage("FadeAway");
         }
         else //deselects if selected the same button or if slot is empty
         {
@@ -175,7 +177,6 @@ public class Inventory : MonoBehaviour {
             //if item was deactivated, usability is 0, so it is removed from inventory
             if (!inventory[activeSlot].activeInHierarchy)
             {
-                Debug.Log(inventory[activeSlot].name + " was used and reached its usability limit");
                 Image[] images = InventoryButtons[activeSlot].GetComponentsInChildren<Image>();
                 foreach (Image im in images)
                 {
@@ -189,7 +190,6 @@ public class Inventory : MonoBehaviour {
             else
             {
                 inventory[activeSlot].SetActive(false);
-                Debug.Log(inventory[activeSlot].name + " was used but has not reached its usability limit");
             }
 
             SlotDeselect();
@@ -220,6 +220,8 @@ public class Inventory : MonoBehaviour {
                     im.sprite = null;
                 }
             }
+            message.text = inventory[activeSlot].GetComponent<Item>().objectName + " dropped";
+            message.SendMessage("FadeAway");
             inventory[activeSlot] = null;
             SlotSelect(activeSlot);
         }
