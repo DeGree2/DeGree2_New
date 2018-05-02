@@ -94,6 +94,15 @@ public class PlayerInteract : MonoBehaviour {
                         }
                     }
                 }
+                else if (currentInterObjScript is ReadableObject)
+                {
+                    currentInterObject.SendMessage("DoInteraction");
+                }
+                else if (currentInterObjScript is KeypadScript)
+                {
+                    if(!((KeypadScript)currentInterObjScript).used)
+                        currentInterObject.SendMessage("DoInteraction");
+                }
             }
         }
 
