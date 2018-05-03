@@ -51,11 +51,13 @@ public class PlayerInteract : MonoBehaviour {
                         {
                             //unlocks the object
                             ((OpenableObject)currentInterObjScript).isLocked = false;
+                            FindObjectOfType<AudioManager>().Play("UnlockDoor");
                             message.text = currentInterObjScript.objectName + " unlocked with " + ((OpenableObject)currentInterObjScript).key.GetComponent<Item>().objectName.ToLower();
                             message.SendMessage("FadeAway");
                         }
                         else
                         {
+                            FindObjectOfType<AudioManager>().Play("DoorLocked");
                             message.text = currentInterObjScript.objectName + " is locked";
                             message.SendMessage("FadeAway");
                         }

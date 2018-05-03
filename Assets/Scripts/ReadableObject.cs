@@ -15,6 +15,8 @@ public class ReadableObject : InteractionObject
 
     public override void DoInteraction()
     {
+        if(!panel.active)
+            FindObjectOfType<AudioManager>().Play("TakeNote");
         panel.GetComponentInChildren<Image>().sprite = noteImage; //changes the image to note image
         panel.SetActive(true);
     }

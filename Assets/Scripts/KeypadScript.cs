@@ -77,6 +77,7 @@ public class KeypadScript : InteractionObject {
     {
         if (currentComb.Equals(combination)) //unclocked
         {
+            FindObjectOfType<AudioManager>().Play("RightCode");
             message.text = "Keypad unlocked " + affectedObject.GetComponent<OpenableObject>().objectName.ToLower();
             message.SendMessage("FadeAway");
             affectedObject.GetComponent<OpenableObject>().isLocked = false;
@@ -87,6 +88,7 @@ public class KeypadScript : InteractionObject {
         }
         else //wrong code
         {
+            FindObjectOfType<AudioManager>().Play("WrongCode");
             message.text = "Wrong code!";
             message.SendMessage("FadeAway");
             canvas.SetActive(false);
