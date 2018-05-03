@@ -27,9 +27,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     [SerializeField]
     Inventory playerDamager;
-
-    [SerializeField]
-    Transform playerTarget;
+    public Transform playerTarget;
 
     [HideInInspector]
     public bool damaged;
@@ -65,19 +63,21 @@ public class EnemyBehaviour : MonoBehaviour
     bool searchBegan;
     float searchModeSpeed = 100;
 
-    List<Transform> visibleT;
-
     bool beginLaser;
     bool endLaser;
     int endL;
     [HideInInspector]
     public bool useLaser;
 
+    int count2;
     int firstTime0 = 0;
     bool first;
 
     Vector3 target2;
     Vector3 target3;
+
+    [HideInInspector]
+    public List<Transform> visibleT;
 
     private float timestamp = 0.0f;
 
@@ -95,6 +95,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     int current = -1;
     Vector3 target;
+
     float[] X = new float[10];
     float[] Y = new float[10];
     float[] Z = new float[10];
@@ -106,9 +107,10 @@ public class EnemyBehaviour : MonoBehaviour
     int turn;
     bool turning = false;
     int turnCount = 0;
-
+    int investigEnd;
 
     bool reversePath;
+    float distance;
 
 
     void GetXYZ()
@@ -280,11 +282,9 @@ public class EnemyBehaviour : MonoBehaviour
         visibleT = scriptVision.visibleTargets;
         List<Transform> visibleO = scriptVision.visibleObjects;
 
-
         dist = Vector3.Distance(playerTarget.position, transform.position);
 
-        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-
+        //transform.position = new Vector3(transform.position.x, 0, transform.position.z);
 
         if (visibleO.Count != 0)
         {
@@ -295,7 +295,6 @@ public class EnemyBehaviour : MonoBehaviour
 
         distFromPlayer = Vector3.Distance(playerDamager.transform.position, transform.position);
 
-
         if (transform.tag == "enemy" && playerDamager.enemyInRange && distFromPlayer <= damageRange)
         {
             damaged = true;
@@ -304,8 +303,6 @@ public class EnemyBehaviour : MonoBehaviour
 
             if (playerDamager.damageOnly1)
                 playerDamager.enemyInRange = false;
-
-
         }
 
 
@@ -340,12 +337,30 @@ public class EnemyBehaviour : MonoBehaviour
             if (goLookDuration < 50)
             {
                 navMeshAgent.speed = 0;
+                distance = distFromObj;
+                count2 = 0;
                 //stand-in-place animation                                                //ANIMATION
             }
-            else if (goLookDuration > 50 && distFromObj > 3)
+            else if (investigateDuration < 200 && goLookDuration > 50 && distFromObj > 3)
             {
+                
                 navMeshAgent.speed = speed;
                 navMeshAgent.SetDestination(visib);
+                
+                if (count2 > 50)
+                {
+                    if (Mathf.Abs(distFromObj - distance) < 1)
+                    {
+                        investigateDuration = 200;
+                    }
+                    else
+                    {
+                        distance = distFromObj;
+                        count2 = 0;
+                    }
+                }
+
+                count2++;
             }
             else if (distFromObj <= 3 && investigateDuration < 200)
             {
@@ -367,7 +382,6 @@ public class EnemyBehaviour : MonoBehaviour
         else
         {
 
-
             if (transform.hasChanged)
             {
                 isAtWall = false;
@@ -379,8 +393,7 @@ public class EnemyBehaviour : MonoBehaviour
                 isAtWall = true;
             }
 
-
-
+            
             //neutral
             if (visibleT.Count == 0 && !searchMode && !searchBegan)
             {

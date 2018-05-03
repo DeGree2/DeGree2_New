@@ -8,6 +8,7 @@ public class EnemyLaser : MonoBehaviour
     EnemyVision vision;
     private LineRenderer lr;
     Vector3 pos;
+    Vector3 posForw;
 
 
     void Start()
@@ -15,13 +16,13 @@ public class EnemyLaser : MonoBehaviour
         lr = GetComponent<LineRenderer>();
         behavior = GetComponentInParent<EnemyBehaviour>();
         vision = GetComponentInParent<EnemyVision>();
-
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        posForw = new Vector3(behavior.playerTarget.transform.position.x, vision.position.y, behavior.playerTarget.transform.position.z);
         pos = vision.position;
 
         if (behavior.damaged)
@@ -45,7 +46,9 @@ public class EnemyLaser : MonoBehaviour
         {
             if (hit.collider)
             {
-                lr.SetPosition(1, hit.point);
+                if (behavior.visibleT.Count != 0)
+                    lr.SetPosition(1, posForw);
+                else lr.SetPosition(1, hit.point);
             }
         }
         else lr.SetPosition(1, transform.forward * 10);
