@@ -88,6 +88,8 @@ public class EnemyVision : MonoBehaviour
 
     void Update()
     {
+       // viewAngle = 0;
+
         behavior = GetComponent<EnemyBehaviour>();
         changeLayer = behavior.changeLayerToDefault;
 
