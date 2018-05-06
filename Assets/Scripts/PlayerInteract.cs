@@ -82,6 +82,7 @@ public class PlayerInteract : MonoBehaviour {
                                 ((EventObject)currentInterObjScript).isLocked = false;
                                 message.text = "You can now use " + currentInterObjScript.objectName.ToLower();
                                 message.SendMessage("FadeAway");
+                                ((EventObject)currentInterObjScript).SendMessage("Unlocked");
                             }
                             else
                             {

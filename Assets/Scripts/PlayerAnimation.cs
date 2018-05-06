@@ -14,26 +14,11 @@ public class PlayerAnimation : MonoBehaviour {
     {
         anim = GetComponent<Animator>();
 	}
-	
-	// Update is called once per frame
-	void Update () 
+
+    // Update is called once per frame
+    void Update()
     {
-        if (Input.GetKey(KeyCode.W))
-        {
-            anim.SetBool("isRunning", true);
-            anim.SetBool("isIdle", false);
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            anim.SetBool("isRunning", true);
-            anim.SetBool("isIdle", false);
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            anim.SetBool("isRunning", true);
-            anim.SetBool("isIdle", false);
-        }
-        else if (Input.GetKey(KeyCode.D))
+        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         {
             anim.SetBool("isRunning", true);
             anim.SetBool("isIdle", false);
@@ -43,5 +28,5 @@ public class PlayerAnimation : MonoBehaviour {
             anim.SetBool("isRunning", false);
             anim.SetBool("isIdle", true);
         }
-	}
+    }
 }

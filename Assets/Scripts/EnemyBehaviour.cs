@@ -308,7 +308,7 @@ public class EnemyBehaviour : MonoBehaviour
 
         if ((transform.tag == "Untagged") && damaged)
         {
-
+            
             navMeshAgent.speed = 0;
 
             if (narrow >= 3 && scriptVision.viewAngle != 0)
@@ -325,6 +325,8 @@ public class EnemyBehaviour : MonoBehaviour
                 FindObjectOfType<AudioManager>().Play("Laser2");
                 endLaser = false;
             }
+            //makes body unmovable when enemy is dead; some errors are shown because of this, but it works
+            gameObject.GetComponent<NavMeshAgent>().enabled = false;
 
         }
         else if (visibleT.Count == 0 && visibleO.Count != 0)
