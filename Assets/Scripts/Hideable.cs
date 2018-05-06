@@ -52,22 +52,6 @@ public class Hideable : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.GetComponent<ShowBehindWalls>() != null)
-        {
-            hidden = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.GetComponent<ShowBehindWalls>() != null)
-        {
-            hidden = false;
-        }
-    }
-
     private void MakeMaterialTransparent()
     {
         material.SetFloat("_Mode", hidden ? 3 : 0);
