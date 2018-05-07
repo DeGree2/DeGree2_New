@@ -12,6 +12,10 @@ public class HealthBarScript : MonoBehaviour {
     public GameObject gameOverPanel;
     public GameObject levelCompletedPanel;
     public static bool levelCompleted = false;
+    public GameObject notePanel;
+    public GameObject healthBarPanel;
+    public GameObject cantTouchThisPanel;
+
 
     void Start () {
         healthBar = GetComponent<Image> ();
@@ -30,6 +34,9 @@ public class HealthBarScript : MonoBehaviour {
         if(health<=0) //If health is 0, game is over
         {
             gameOverPanel.SetActive(true);
+            notePanel.SetActive(false);
+            healthBarPanel.SetActive(false);
+            cantTouchThisPanel.SetActive(false);
 			Time.timeScale = 0;
         }
 	}

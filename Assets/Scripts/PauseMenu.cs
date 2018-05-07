@@ -7,6 +7,7 @@ public class PauseMenu : MonoBehaviour {
     public static bool inOptions = false;
 
     public GameObject pauseMenuUI;
+    public GameObject gameOverMenu;
 
     private void Start()
     {
@@ -16,18 +17,21 @@ public class PauseMenu : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !inOptions)
+        if (!gameOverMenu.activeSelf)
         {
-            if (gameIsPaused)
-                Resume();
-            else
-                Pause();
-        }
-        if (Input.GetKeyDown(KeyCode.Escape) && inOptions)
-        {
-            GameObject.Find("OptionsMenu").SetActive(false);
-            inOptions = false;
-            pauseMenuUI.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.Escape) && !inOptions)
+            {
+                if (gameIsPaused)
+                    Resume();
+                else
+                    Pause();
+            }
+            if (Input.GetKeyDown(KeyCode.Escape) && inOptions)
+            {
+                GameObject.Find("OptionsMenu").SetActive(false);
+                inOptions = false;
+                pauseMenuUI.SetActive(true);
+            }
         }
     }
 

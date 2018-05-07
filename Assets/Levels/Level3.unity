@@ -22904,6 +22904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1282603759}
+  gameOverMenu: {fileID: 1049342907}
 --- !u!114 &792254033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27810,6 +27811,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverPanel: {fileID: 1049342907}
   levelCompletedPanel: {fileID: 1937137574}
+  notePanel: {fileID: 86041553}
+  healthBarPanel: {fileID: 1864209701}
+  cantTouchThisPanel: {fileID: 891882998}
 --- !u!1001 &962736545
 Prefab:
   m_ObjectHideFlags: 0
