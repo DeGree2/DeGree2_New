@@ -82107,15 +82107,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400006, guid: 9d04a5087aab13a40a61d47a717e7618, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.4
+      value: 4.87
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 9d04a5087aab13a40a61d47a717e7618, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2
+      value: 1.22
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 9d04a5087aab13a40a61d47a717e7618, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 45
+      value: 44.82
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 9d04a5087aab13a40a61d47a717e7618, type: 3}
       propertyPath: m_LocalRotation.x
@@ -104050,7 +104050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9f5f12b0ea3b9e429c2e3ff583676e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadLevel: LevelCompleted2
+  loadLevel: LevelCompleted3
   change: 0
   delayTime: 0
 --- !u!1 &2054710924 stripped
