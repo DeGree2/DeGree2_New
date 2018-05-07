@@ -14418,6 +14418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1365436865}
+  gameOverMenu: {fileID: 498108516}
 --- !u!114 &285013763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47344,6 +47345,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverPanel: {fileID: 498108516}
   levelCompletedPanel: {fileID: 1937137574}
+  notePanel: {fileID: 1546905422}
+  healthBarPanel: {fileID: 1864209701}
+  cantTouchThisPanel: {fileID: 2095452050}
 --- !u!1 &960506423 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 2028cb1f4b4384a4a94c587c3b1a8df3, type: 3}
