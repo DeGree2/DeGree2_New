@@ -46790,7 +46790,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400006, guid: 9d04a5087aab13a40a61d47a717e7618, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 34.01
+      value: 35.77
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 9d04a5087aab13a40a61d47a717e7618, type: 3}
       propertyPath: m_LocalPosition.y
@@ -46798,7 +46798,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 9d04a5087aab13a40a61d47a717e7618, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 72.28
+      value: 72.05
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 9d04a5087aab13a40a61d47a717e7618, type: 3}
       propertyPath: m_LocalRotation.x
@@ -59530,7 +59530,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2053749333}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 9.75, y: 1, z: 5.01}
+  m_LocalPosition: {x: 8.92, y: 1, z: 5.01}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -59562,7 +59562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9f5f12b0ea3b9e429c2e3ff583676e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadLevel: LevelCompleted
+  loadLevel: LevelCompleted2
   change: 0
   delayTime: 0
 --- !u!1 &2056047232
