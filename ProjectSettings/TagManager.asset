@@ -11,6 +11,7 @@ TagManager:
   - SF_Door
   - vision
   - top_point
+  - laser_Point
   layers:
   - Default
   - TransparentFX
