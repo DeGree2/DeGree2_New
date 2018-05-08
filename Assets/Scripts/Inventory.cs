@@ -76,6 +76,8 @@ public class Inventory : MonoBehaviour {
             }
             activeSlot = index;
             InventoryButtons[index].GetComponent<Image>().color = Color.grey;
+            message.text = inventory[index].GetComponent<Item>().objectName + " selected";
+            message.SendMessage("FadeAway");
         }
         else //deselects if selected the same button or if slot is empty
         {
@@ -175,7 +177,6 @@ public class Inventory : MonoBehaviour {
             //if item was deactivated, usability is 0, so it is removed from inventory
             if (!inventory[activeSlot].activeInHierarchy)
             {
-                Debug.Log(inventory[activeSlot].name + " was used and reached its usability limit");
                 Image[] images = InventoryButtons[activeSlot].GetComponentsInChildren<Image>();
                 foreach (Image im in images)
                 {
@@ -189,14 +190,13 @@ public class Inventory : MonoBehaviour {
             else
             {
                 inventory[activeSlot].SetActive(false);
-                Debug.Log(inventory[activeSlot].name + " was used but has not reached its usability limit");
             }
 
             SlotDeselect();
         }
     }
-
-    //Drops active item from inventory on the ground
+    /*
+    //Drops active item from inventory on the ground. Previously used, changed to code below this method to be more convenient as a mechanic
     public void DropActive()
     {
         if (activeSlot != -1 && inventory[activeSlot] != null)
@@ -220,13 +220,15 @@ public class Inventory : MonoBehaviour {
                     im.sprite = null;
                 }
             }
+            message.text = inventory[activeSlot].GetComponent<Item>().objectName + " dropped";
+            message.SendMessage("FadeAway");
             inventory[activeSlot] = null;
             SlotSelect(activeSlot);
         }
-    }
+    }*/
 
-    //Throws active item from inventory on the ground (with force), (similar to drop, currently unused)
-    public void ThrowActive()
+    //Throws active item from inventory on the ground (with force)
+    public void DropActive()
     {
         if (activeSlot != -1 && inventory[activeSlot] != null)
         {
@@ -234,10 +236,12 @@ public class Inventory : MonoBehaviour {
             drop.SetActive(true);
             //chooses position close to player for dropping, then for throwing
             Vector3 charPosition = gameObject.transform.position;
-            charPosition.y += 1.5f;
+            //charPosition.y += 1.5f;
             Vector3 charDirection = gameObject.transform.forward;
-            Vector3 dropPosition = charPosition + charDirection * 1f;
+            Vector3 dropPosition = charPosition + charDirection * 0.5f;
+            dropPosition.y = charPosition.y + 2f;
             Vector3 throwPosition = charPosition + charDirection * 550f;
+            throwPosition.y = 0;
 
             drop.transform.position = dropPosition;
             drop.GetComponent<Rigidbody>().AddForce(throwPosition);
@@ -251,6 +255,8 @@ public class Inventory : MonoBehaviour {
                     im.sprite = null;
                 }
             }
+            message.text = inventory[activeSlot].GetComponent<Item>().objectName + " dropped";
+            message.SendMessage("FadeAway");
             inventory[activeSlot] = null;
             SlotSelect(activeSlot);
         }

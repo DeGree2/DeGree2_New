@@ -17,6 +17,7 @@ public class OpenableObject : InteractionObject
     //opens/closes the object
     public override void DoInteraction()
     {
+        FindObjectOfType<AudioManager>().Play("OpenDoor");
         if (isOpened)
         {
             transform.rotation = startRotation; //closes door (rotation as in start rotation)

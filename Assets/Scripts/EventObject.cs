@@ -13,6 +13,26 @@ public class EventObject : InteractionObject
     //type 2 - other eventObject unlocker (only affects their type, not being locked with items);
     //type 3 - wall/... remover;
     public int changeToType = 0; //becomes object type if unlocked by type 2 EventObject;
+    public Material working;
+    public Material notWorking;
+    public Material locked;
+
+    private void Start()
+    {
+        Material mat = gameObject.GetComponent<MeshRenderer>().materials[0];
+        if (type == 0)
+        {
+            gameObject.GetComponent<MeshRenderer>().materials = new Material[2] { mat, notWorking };
+        }
+        else if (isLocked)
+        {
+            gameObject.GetComponent<MeshRenderer>().materials = new Material[2] { mat, locked };
+        }
+        else
+        {
+            gameObject.GetComponent<MeshRenderer>().materials = new Material[2] { mat, working };
+        }
+    }
 
     public override void DoInteraction()
     {
@@ -28,6 +48,7 @@ public class EventObject : InteractionObject
         {
             EventObject affectedObjectScript = affectedObject.GetComponent<EventObject>();
             affectedObjectScript.type = affectedObjectScript.changeToType; //makes affected object interactable
+            affectedObjectScript.MadeUsable();
             message.text = objectName + " made " + affectedObjectScript.objectName.ToLower() + " usable";
             message.SendMessage("FadeAway");
             type = 0; //makes object uninteractable
@@ -39,5 +60,25 @@ public class EventObject : InteractionObject
             message.SendMessage("FadeAway");
             type = 0; //makes object uninteractable
         }
+    }
+
+    public void Unlocked()
+    {
+        Material mat = gameObject.GetComponent<MeshRenderer>().materials[0];
+        gameObject.GetComponent<MeshRenderer>().materials = new Material[2] { mat, working };
+    }
+
+    public void MadeUsable()
+    {
+        Material mat = gameObject.GetComponent<MeshRenderer>().materials[0];
+        if (isLocked)
+        {
+            gameObject.GetComponent<MeshRenderer>().materials = new Material[2] { mat, locked };
+        }
+        else
+        {
+            gameObject.GetComponent<MeshRenderer>().materials = new Material[2] { mat, working };
+        }
+        
     }
 }

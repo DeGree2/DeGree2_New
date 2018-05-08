@@ -50,7 +50,7 @@ public class EnemyVision : MonoBehaviour
     float height = 0.2f;
     
 
-        void Start()
+    void Start()
     {
 
         Transform[] children = GetComponentsInChildren<Transform>();
@@ -88,11 +88,12 @@ public class EnemyVision : MonoBehaviour
 
     void Update()
     {
+       // viewAngle = 0;
+
         behavior = GetComponent<EnemyBehaviour>();
         changeLayer = behavior.changeLayerToDefault;
 
         position = new Vector3(top_point.transform.position.x, top_point.transform.position.y - height, top_point.transform.position.z);
-
 
         if (behavior.withLaser && behavior.useLaser)
         {

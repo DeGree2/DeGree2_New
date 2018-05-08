@@ -51,11 +51,13 @@ public class PlayerInteract : MonoBehaviour {
                         {
                             //unlocks the object
                             ((OpenableObject)currentInterObjScript).isLocked = false;
+                            FindObjectOfType<AudioManager>().Play("UnlockDoor");
                             message.text = currentInterObjScript.objectName + " unlocked with " + ((OpenableObject)currentInterObjScript).key.GetComponent<Item>().objectName.ToLower();
                             message.SendMessage("FadeAway");
                         }
                         else
                         {
+                            FindObjectOfType<AudioManager>().Play("DoorLocked");
                             message.text = currentInterObjScript.objectName + " is locked";
                             message.SendMessage("FadeAway");
                         }
@@ -80,6 +82,7 @@ public class PlayerInteract : MonoBehaviour {
                                 ((EventObject)currentInterObjScript).isLocked = false;
                                 message.text = "You can now use " + currentInterObjScript.objectName.ToLower();
                                 message.SendMessage("FadeAway");
+                                ((EventObject)currentInterObjScript).SendMessage("Unlocked");
                             }
                             else
                             {
@@ -93,6 +96,15 @@ public class PlayerInteract : MonoBehaviour {
                             currentInterObject.SendMessage("DoInteraction");
                         }
                     }
+                }
+                else if (currentInterObjScript is ReadableObject)
+                {
+                    currentInterObject.SendMessage("DoInteraction");
+                }
+                else if (currentInterObjScript is KeypadScript)
+                {
+                    if(!((KeypadScript)currentInterObjScript).used)
+                        currentInterObject.SendMessage("DoInteraction");
                 }
             }
         }

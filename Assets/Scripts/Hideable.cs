@@ -5,7 +5,7 @@ using System.Linq;
 
 public class Hideable : MonoBehaviour
 {
-    private const float transparency = 0.01f;
+    private const float transparency = 0.001f;
 
     private Material material;
     private Hideable[] hideablesInChildren;
@@ -49,22 +49,6 @@ public class Hideable : MonoBehaviour
                 }
             }
             MakeMaterialOpaque();
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.GetComponent<ShowBehindWalls>() != null)
-        {
-            hidden = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.GetComponent<ShowBehindWalls>() != null)
-        {
-            hidden = false;
         }
     }
 
