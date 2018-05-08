@@ -5,7 +5,7 @@ using System.Linq;
 
 public class Hideable : MonoBehaviour
 {
-    private const float transparency = 0.01f;
+    private const float transparency = 0.001f;
 
     private Material material;
     private Hideable[] hideablesInChildren;

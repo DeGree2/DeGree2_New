@@ -29,6 +29,7 @@ public class EnemyLaser : MonoBehaviour
         if (behavior.damaged)
         {
             lr.enabled = false;
+            sparkle.GetComponent<ParticleSystem>().enableEmission = false;
         }
         else if (behavior.withLaser && behavior.useLaser)
         {
