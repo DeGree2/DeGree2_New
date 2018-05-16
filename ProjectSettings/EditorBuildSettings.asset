@@ -21,13 +21,13 @@ EditorBuildSettings:
     path: Assets/Levels/LevelCompleted.unity
     guid: 82951597dccf7044cb4205135b719c24
   - enabled: 1
-    path: Assets/Levels/Level3.unity
+    path: Assets/Levels/Level2.unity
     guid: ebcff2ca4d6103b43939457d1efe9fd3
   - enabled: 1
     path: Assets/Levels/LevelCompleted2.unity
     guid: df483cd1fe217dc4dae0bb02f0134183
   - enabled: 1
-    path: Assets/Levels/Level2.unity
+    path: Assets/Levels/Level3.unity
     guid: ad20cfd39146e6c418bfc4102a16c13a
   - enabled: 1
     path: Assets/Levels/LevelCompleted3.unity
@@ -38,3 +38,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Levels/LevelCompleted4.unity
     guid: 6761838f45d54f44e80b82527aefd2cf
+  - enabled: 1
+    path: Assets/Levels/Level5.unity
+    guid: 7511698ce41f921418e43a0393cd1831
+  - enabled: 1
+    path: Assets/Levels/LevelCompleted5.unity
+    guid: 89a4bcee088ba9948b8d77a36db30869
