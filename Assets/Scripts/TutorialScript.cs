@@ -9,6 +9,7 @@ public class TutorialScript : MonoBehaviour {
     private bool interacted = false;
     public GameObject panel1; //other tutorial panel (near health)
     public GameObject panel2; //other tutorial panel (near inventory)
+    private bool paused = false;
 
     private string message1 = "Oh no! A virus made droids go MAD! You must find a way to stop them!";
     private string message2 = "Start by exploring your surroundings. Use WASD to move";
@@ -29,6 +30,10 @@ public class TutorialScript : MonoBehaviour {
     private IEnumerator ChangeText()
     {
         yield return new WaitForSecondsRealtime(4);
+
+        while (paused)
+            yield return null;
+
         message.text = message2; //move message
         moved = false;
         yield return new WaitForSecondsRealtime(2);
@@ -37,6 +42,10 @@ public class TutorialScript : MonoBehaviour {
         {
             yield return null;
         }
+
+        while (paused)
+            yield return null;
+
         message.text = message3; //interact message
         interacted = false;
         yield return new WaitForSecondsRealtime(2);
@@ -45,26 +54,56 @@ public class TutorialScript : MonoBehaviour {
         {
             yield return null;
         }
+
+        while (paused)
+            yield return null;
+
         message.text = message32; //about inventory
         //makes inventory panel blink
         for (int i = 0; i < 8; i++)
         {
+            while (paused)
+                yield return null;
+
             panel2.SetActive(true);
             yield return new WaitForSecondsRealtime(0.5f);
+
+            while (paused)
+                yield return null;
+
             panel2.SetActive(false);
             yield return new WaitForSecondsRealtime(0.5f);
         }
+
+        while (paused)
+            yield return null;
+
         message.text = message4; //about droids attacking you
         yield return new WaitForSecondsRealtime(6);
+
+        while (paused)
+            yield return null;
+
         message.text = message42; //about health
         //makes health panel blink
         for (int i = 0; i < 8; i++)
         {
+            while (paused)
+                yield return null;
+
             panel1.SetActive(true);
             yield return new WaitForSecondsRealtime(0.5f);
+
+            while (paused)
+                yield return null;
+
             panel1.SetActive(false);
             yield return new WaitForSecondsRealtime(0.5f);
         }
+
+        while (paused)
+            yield return null;
+
         message.text = message5; //bye message
         yield return new WaitForSecondsRealtime(5);
         Destroy(gameObject);
@@ -79,5 +118,14 @@ public class TutorialScript : MonoBehaviour {
 
         if (Input.GetButtonDown("Interact"))
             interacted = true;
+
+        if(Time.timeScale == 0)
+        {
+            paused = true;
+        }
+        else
+        {
+            paused = false;
+        }
     }
 }
