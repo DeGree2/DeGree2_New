@@ -39,6 +39,7 @@ public class PlayerInteract : MonoBehaviour {
                         inventory.AddItem(currentInterObject);
                         anim.SetTrigger("isPickingUp");
                         currentInterObject.layer = layerIndex;
+                        currentInterObject = null;
                     }
                 }
                 //interaction specific for openable object
@@ -116,7 +117,7 @@ public class PlayerInteract : MonoBehaviour {
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         //when item is in range, it becomes current interactable object (can be picked up)
         if (other.CompareTag("interObject"))
