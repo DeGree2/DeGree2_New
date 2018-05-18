@@ -52,4 +52,13 @@ public class Item : InteractionObject {
         message.text = objectName + " added to inventory";
         message.SendMessage("FadeAway");
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Physics.IgnoreCollision(collision.collider, GetComponent<BoxCollider>());
+        }
+    }
+
 }

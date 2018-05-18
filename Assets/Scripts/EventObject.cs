@@ -43,6 +43,7 @@ public class EventObject : InteractionObject
             message.text = objectName + " used to unlock " + affectedObjectScript.objectName.ToLower();
             message.SendMessage("FadeAway");
             type = 0; //makes object uninteractable
+            FindObjectOfType<AudioManager>().Play("console");
         }
         else if (type == 2)
         {
@@ -52,6 +53,7 @@ public class EventObject : InteractionObject
             message.text = objectName + " made " + affectedObjectScript.objectName.ToLower() + " usable";
             message.SendMessage("FadeAway");
             type = 0; //makes object uninteractable
+            FindObjectOfType<AudioManager>().Play("console");
         }
         else if(type == 3)
         {
@@ -59,6 +61,8 @@ public class EventObject : InteractionObject
             message.text = objectName + " used to remove some obstacles";
             message.SendMessage("FadeAway");
             type = 0; //makes object uninteractable
+            FindObjectOfType<AudioManager>().Play("console");
+            FindObjectOfType<AudioManager>().Play("explode");
         }
     }
 
@@ -66,6 +70,7 @@ public class EventObject : InteractionObject
     {
         Material mat = gameObject.GetComponent<MeshRenderer>().materials[0];
         gameObject.GetComponent<MeshRenderer>().materials = new Material[2] { mat, working };
+        FindObjectOfType<AudioManager>().Play("repair");
     }
 
     public void MadeUsable()
