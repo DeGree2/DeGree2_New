@@ -12,6 +12,7 @@ TagManager:
   - vision
   - top_point
   - laser_Point
+  - enemyDeath
   layers:
   - Default
   - TransparentFX
