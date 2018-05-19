@@ -302,9 +302,9 @@ public class EnemyBehaviour : MonoBehaviour
 
         if (playerDamageAll.enemyDeath)
         {
-            damaged = true;
-            transform.tag = "Untagged";
+            StartCoroutine("Waiting");
         }
+
         else if (transform.tag == "enemy" && playerDamager.enemyInRange && distFromPlayer <= damageRange)
         {
             damaged = true;
@@ -615,6 +615,17 @@ public class EnemyBehaviour : MonoBehaviour
             }
         }
 
+    }
+
+    private IEnumerator Waiting()
+    {
+        
+        yield return new WaitForSecondsRealtime(14f);
+        if(Time.timeScale != 0)
+        {
+            damaged = true;
+            transform.tag = "Untagged";
+        }
     }
 
 }
