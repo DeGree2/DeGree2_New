@@ -5,6 +5,7 @@ public class PauseMenu : MonoBehaviour {
 
     public static bool gameIsPaused = false;
     public static bool inOptions = false;
+    private bool cannotPause = false;
 
     public GameObject pauseMenuUI;
     public GameObject gameOverMenu;
@@ -12,6 +13,7 @@ public class PauseMenu : MonoBehaviour {
     private void Start()
     {
         Time.timeScale = 1f;
+        cannotPause = false;
     }
 
     // Update is called once per frame
@@ -19,7 +21,7 @@ public class PauseMenu : MonoBehaviour {
     {
         if (!gameOverMenu.activeSelf)
         {
-            if (Input.GetKeyDown(KeyCode.Escape) && !inOptions)
+            if (Input.GetKeyDown(KeyCode.Escape) && !inOptions && !cannotPause)
             {
                 if (gameIsPaused)
                     Resume();
@@ -70,5 +72,10 @@ public class PauseMenu : MonoBehaviour {
             inOptions = true;
         else
             inOptions = false;
+    }
+
+    public void CannotPause()
+    {
+        cannotPause = true;
     }
 }
