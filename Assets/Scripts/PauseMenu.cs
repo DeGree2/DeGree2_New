@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour {
 
@@ -9,6 +10,9 @@ public class PauseMenu : MonoBehaviour {
 
     public GameObject pauseMenuUI;
     public GameObject gameOverMenu;
+
+    public Slider musicVolume;
+    public Slider fxVolume;
 
     private void Start()
     {
@@ -32,6 +36,7 @@ public class PauseMenu : MonoBehaviour {
             {
                 GameObject.Find("OptionsMenu").SetActive(false);
                 inOptions = false;
+                VolumePrefs();
                 pauseMenuUI.SetActive(true);
             }
         }
@@ -72,6 +77,12 @@ public class PauseMenu : MonoBehaviour {
             inOptions = true;
         else
             inOptions = false;
+    }
+
+    public void VolumePrefs()
+    {
+        PlayerPrefs.SetFloat("MusicVolume", musicVolume.value);
+        PlayerPrefs.SetFloat("FXVolume", fxVolume.value);
     }
 
     public void CannotPause()
