@@ -36,8 +36,20 @@ public class Item : InteractionObject {
             if (usage == 0)
                 gameObject.SetActive(false);
             message.text = objectName + " used";
-            if(!weapon)
-                FindObjectOfType<AudioManager>().Play("UseItem");
+            if (!weapon)
+            {
+                if (objectName != "Bottle of wine")
+                    FindObjectOfType<AudioManager>().Play("UseItem");
+                else
+                    FindObjectOfType<AudioManager>().Play("drink");
+            } 
+            else
+            {
+                if(objectName == "Bucket of water")
+                    FindObjectOfType<AudioManager>().Play("water");
+                else
+                    FindObjectOfType<AudioManager>().Play("hit");
+            }
             message.SendMessage("FadeAway");
         }
         else if (usage == -1)
@@ -52,4 +64,13 @@ public class Item : InteractionObject {
         message.text = objectName + " added to inventory";
         message.SendMessage("FadeAway");
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Physics.IgnoreCollision(collision.collider, GetComponent<BoxCollider>());
+        }
+    }
+
 }

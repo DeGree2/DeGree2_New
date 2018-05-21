@@ -19,7 +19,7 @@ public class MoveScenes : MonoBehaviour {
         if (other.CompareTag("Player"))
         {
             FindObjectOfType<AudioManager>().Play("LevelCompleted");
-            change = true;
+			change = true;
         }
     }
 

@@ -38,13 +38,17 @@ public class FieldOfView : MonoBehaviour
     private float update;
     Vector3 lastUpdatePos;
 
-    void OnEnable()
+    private int fCount = 0;
+
+    void Start()
     {
         update = 3f;
         updateDistance = 0f;
 
         viewMesh = new Mesh {name = "View Mesh"};
         viewMeshFilter.mesh = viewMesh;
+
+        lastUpdatePos = transform.position;
 
         fogProjector = fogProjector ?? FindObjectOfType<FogProjector>();
 
@@ -57,22 +61,26 @@ public class FieldOfView : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(delay);
-            FindVisibleTargets();
-            if (updateDistance == 0f)
-            {
-                updateDistance = update;
-            }
-                
+            FindVisibleTargets();      
         }
     }
 
     void LateUpdate()
     {
         DrawFieldOfView();
-        if (Vector3.Distance(transform.position, lastUpdatePos) > updateDistance || Time.time<.5f)
+        if (Vector3.Distance(transform.position, lastUpdatePos) >= updateDistance || Time.time<.5f)
         {
             lastUpdatePos = transform.position;
             fogProjector.UpdateFog();
+
+            if (updateDistance == 0f && fCount > 30)
+            {
+                updateDistance = update;
+            }
+            if(fCount <= 30)
+            {
+                fCount++;
+            }
         }
     }
 

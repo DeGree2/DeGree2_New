@@ -12,6 +12,8 @@ public class PlayerInteract : MonoBehaviour {
     Animator anim;
     string layerName = "ThrownObject";
     int layerIndex;
+    [HideInInspector]
+    public bool enemyDeath;
     
 
     private void Start()
@@ -39,6 +41,7 @@ public class PlayerInteract : MonoBehaviour {
                         inventory.AddItem(currentInterObject);
                         anim.SetTrigger("isPickingUp");
                         currentInterObject.layer = layerIndex;
+                        currentInterObject = null;
                     }
                 }
                 //interaction specific for openable object
@@ -116,7 +119,7 @@ public class PlayerInteract : MonoBehaviour {
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         //when item is in range, it becomes current interactable object (can be picked up)
         if (other.CompareTag("interObject"))
@@ -125,11 +128,11 @@ public class PlayerInteract : MonoBehaviour {
             currentInterObjScript = currentInterObject.GetComponent<InteractionObject>();
 
         }
-
-
+        
         //Živilė. Player uses health bonus.
         if (other.CompareTag("bonusHealth"))
         {
+
             if (HealthBarScript.health < 100f)
             {
                 other.gameObject.SetActive(false);
@@ -138,6 +141,11 @@ public class PlayerInteract : MonoBehaviour {
                 message.text = "Health restored";
                 message.SendMessage("FadeAway");
             }
+        }
+
+        if (other.CompareTag("enemyDeath"))
+        {
+            enemyDeath = true;
         }
     }
     private void OnTriggerExit(Collider other)

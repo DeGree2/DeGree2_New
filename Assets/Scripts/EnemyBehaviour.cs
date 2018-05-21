@@ -30,6 +30,10 @@ public class EnemyBehaviour : MonoBehaviour
     public Transform playerTarget;
 
     [HideInInspector]
+    public PlayerInteract playerDamageAll;
+  
+
+    [HideInInspector]
     public bool damaged;
 
     int count;
@@ -273,7 +277,8 @@ public class EnemyBehaviour : MonoBehaviour
         path = new NavMeshPath();
         anim = GetComponent<Animator>();
         damageRange = playerDamager.damageRange;
-    }
+        playerDamageAll = Object.FindObjectOfType<PlayerInteract>();
+}
 
 
     void Update()
@@ -295,7 +300,12 @@ public class EnemyBehaviour : MonoBehaviour
 
         distFromPlayer = Vector3.Distance(playerDamager.transform.position, transform.position);
 
-        if (transform.tag == "enemy" && playerDamager.enemyInRange && distFromPlayer <= damageRange)
+        if (playerDamageAll.enemyDeath)
+        {
+            StartCoroutine("Waiting");
+        }
+
+        else if (transform.tag == "enemy" && playerDamager.enemyInRange && distFromPlayer <= damageRange)
         {
             damaged = true;
             transform.tag = "Untagged";
@@ -605,6 +615,17 @@ public class EnemyBehaviour : MonoBehaviour
             }
         }
 
+    }
+
+    private IEnumerator Waiting()
+    {
+        
+        yield return new WaitForSecondsRealtime(14f);
+        if(Time.timeScale != 0)
+        {
+            damaged = true;
+            transform.tag = "Untagged";
+        }
     }
 
 }
