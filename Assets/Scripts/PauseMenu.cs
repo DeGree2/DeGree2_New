@@ -82,7 +82,7 @@ public class PauseMenu : MonoBehaviour {
     public void VolumePrefs()
     {
         PlayerPrefs.SetFloat("MusicVolume", musicVolume.value);
-        PlayerPrefs.SetFloat("FXVolume", fxVolume.value);
+        //PlayerPrefs.SetFloat("FXVolume", fxVolume.value);
     }
 
     public void CannotPause()
