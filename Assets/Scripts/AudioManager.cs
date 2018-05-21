@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
 
     public Sound[] sounds;
     public static AudioManager instance;
+    private float musicVolume;
 
     // kaip naudoti
     // FindObjectOfType<AudioManager>().Play("pavad");
@@ -20,15 +21,29 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
+        musicVolume = PlayerPrefs.GetFloat("MusicVolume");
+
        // DontDestroyOnLoad(gameObject);
 
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
-            s.source.volume = s.volume;
+            s.source.volume = musicVolume * s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+        }
+    }
+
+    private void Update()
+    {
+        if(PlayerPrefs.GetFloat("MusicVolume") != musicVolume)
+        {
+            musicVolume = PlayerPrefs.GetFloat("MusicVolume");
+            foreach (Sound s in sounds)
+            {
+                s.source.volume = musicVolume * s.volume;
+            }
         }
     }
 

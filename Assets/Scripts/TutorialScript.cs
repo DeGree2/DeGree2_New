@@ -15,6 +15,7 @@ public class TutorialScript : MonoBehaviour {
     private string message2 = "Start by exploring your surroundings. Use WASD to move";
     private string message3 = "You can interact with the environment (pick up items, open doors and so on) with E";
     private string message32 = "Items are stored in inventory. Whenever you want to use an item, just select the slot and press E! To drop it, press Q instead!";
+    private string message33 = "If you want to unlock doors or fix things, you only need to have certain items in your inventory: you don't need to use them yourself";
     private string message4 = "Be careful, droids are going to attack anyone on sight! Try to avoid them because they can hurt you!";
     private string message42 = "Your health bar shows how alive you are; enemies can decrease you health but various items can increase it";
     private string message5 = "Okay, I'll stop disturbing you now. Try to find a way to stop this madness! You are on your own! Good luck!";
@@ -74,6 +75,12 @@ public class TutorialScript : MonoBehaviour {
             panel2.SetActive(false);
             yield return new WaitForSecondsRealtime(0.5f);
         }
+
+        while (paused)
+            yield return null;
+
+        message.text = message33; //about keys not usable
+        yield return new WaitForSecondsRealtime(6);
 
         while (paused)
             yield return null;
